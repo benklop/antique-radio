@@ -59,7 +59,7 @@ void render_image(gu7000_image image) {
     for(int i = 0; i < image.data.size(); i++) {
         bitset<8> data(image.data[i]);
         for(int j = 0; j < 8; j++) {
-            cout << data[j] == 1 ? "■" : " ";
+            cout << (data[j] ? " " : "■");
         }
         if(i % bpr == 1)
             cout << endl;
