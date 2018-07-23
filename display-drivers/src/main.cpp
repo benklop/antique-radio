@@ -63,12 +63,15 @@ int main() {
     vfd.GU7000_home();
 
 
+
     INIReader reader("config.ini");
     if (reader.ParseError() < 0) {
         cout << "Can't load 'config.ini'\n";
         return 1;
     }
 
-    gu7000_image image = load_image(reader.Get("images", "initial", ""));
+    GU7000_setScreenBrightness(reader.GetInteger("screen", "brightness", 75));
+
+    gu7000_image image = load_image(reader.Get("screen", "splash", ""));
     vfd.GU7000_drawImage(image.width, image.height, image.data);
 }
