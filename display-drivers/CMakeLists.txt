@@ -16,8 +16,22 @@ configure_file (
 # so that we will find TutorialConfig.h
 include_directories(
     "${PROJECT_BINARY_DIR}"
-    "driver"
-    "src"
+    "${PROJECT_SOURCE_DIR}/driver"
+    "${PROJECT_SOURCE_DIR}/src"
     )
- 
+
+# build the gu7000 library so we can actualyl do things
+add_library(gu7000 STATIC
+    "driver/config.h"
+    "driver/interface.h"
+    "driver/Noritake_VFD_GU7000.h"
+    "driver/linux_serial.cpp"
+    "driver/asyncSerial.cpp"
+    "driver/paralleli80.cpp"
+    "driver/spi.cpp"
+    "driver/syncSerial.cpp"
+    "driver/Noritake_VFD_GU7000.cpp"
+    )
+
 add_executable(vfd-display src/main.cpp)
+target_link_libraries(vfd-display gu7000)

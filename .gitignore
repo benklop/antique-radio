@@ -1,0 +1,6 @@
+display-drivers/CMakeCache.txt
+display-drivers/CMakeFiles
+display-drivers/Makefile
+display-drivers/Config.h
+display-drivers/cmake_install.cmake
+python/*.pyc
