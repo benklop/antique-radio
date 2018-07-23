@@ -33,38 +33,22 @@ gu7000_image load_image(string filename) {
     image.width = src.width();
     image.height = src.height();
 
-    int current_bit = 0;
-    for (int i=0; i < image.height; i++) {
+    num_bytes = src.width() * (src.height()/8);
 
+    for (int i=0; i < src.width(); i++) {
         bitset<8> this_byte(0);
-        bitset<8> other_byte(0);
-        for(int j=0; j < image.width; j++) {
-            int swapped_bit = (current_bit % 8);
-            if(*src.data(i,j)) {
-                this_byte[swapped_bit] = 0;
+        for(int j=0; j < src.height() / 8; j++) {
+            for(int k=0; k < 8; k++) {
+                if(*src.data(i, j * 8 + k)) {
+                    this_byte[k] = 1;
+                }
+                else {
+                    this_byte[k] = 0;
+                }
             }
-            else {
-                this_byte[swapped_bit] = 1;
-            }
-            current_bit++;
-
-            if(current_bit % 16 == 0) {
-                image.data.push_back((uint8_t)this_byte.to_ulong());
-                image.data.push_back((uint8_t)other_byte.to_ulong());
-            }
-            if(current_bit % 8 == 0) {
-                other_byte = this_byte;
-            }
+            image.data.push_back((uint8_t)this_byte.to_ulong());
         }
     }
-
-  /*  int half = image.data.size() / 2;
-
-    for(int i = 0; i < half; i++) {
-        image.data.push_back(image.data.front());
-        image.data.erase(image.data.begin());
-    }
-*/
     cout << "success!" << endl;
     return image;
 }
@@ -86,7 +70,7 @@ int main() {
     vfd.GU7000_reset();
     vfd.GU7000_init();
     vfd.GU7000_home();
-   
+
 
     INIReader reader("config.ini");
     if (reader.ParseError() < 0) {
