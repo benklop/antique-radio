@@ -38,7 +38,7 @@ gu7000_image load_image(string filename) {
     for (int i=0; i < src.width(); i++) {
         bitset<8> this_byte(0);
         for(int j=0; j < src.height() / 8; j++) {
-            for(int k=0; k < 8; k++) {
+            for(int k=7; k >= 0; k--) {
                 if(*src.data(i, j * 8 + k)) {
                     this_byte[k] = 1;
                 }
