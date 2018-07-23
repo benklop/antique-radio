@@ -1,5 +1,7 @@
-#include "gu7000/config.h"
-#include "gu7000/Noritake_VFD_GU7000.h"
+#include "../driver/config.h"
+#include "../driver/Noritake_VFD_GU7000.h"
+#include "Config.h"
+
 Noritake_VFD_GU7000 vfd;
 int main() {
     vfd.GU7000_reset();
