@@ -1,10 +1,12 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.1)
 project (vfd-display)
 
 # The version number.
 set (VERSION_MAJOR 0)
 set (VERSION_MINOR 1)
  
+set (CMAKE_CXX_STANDARD 14)
+
 # configure a header file to pass some of the CMake settings
 # to the source code
 configure_file (
@@ -20,7 +22,7 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/src"
     )
 
-# build the gu7000 library so we can actualyl do things
+# build the gu7000 library so we can actually do things
 add_library(gu7000 STATIC
     "driver/config.h"
     "driver/interface.h"
@@ -34,4 +36,4 @@ add_library(gu7000 STATIC
     )
 
 add_executable(vfd-display src/main.cpp)
-target_link_libraries(vfd-display gu7000)
+target_link_libraries(vfd-display gu7000 pthread)
