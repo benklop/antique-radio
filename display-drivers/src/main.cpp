@@ -59,7 +59,9 @@ void render_image(gu7000_image image) {
     int bpr = image.width / 8;
     cout << "image uses " << image.data.size() << " 8 bit bytes" << endl;
     for(int i = 0; i < image.data.size(); i++) {
-        bitset<8> data(image.data[i]);
+        unit8_t b = image.data[i];
+        b = ((b * 0x0802LU & 0x22110LU) | (b * 0x8020LU & 0x88440LU)) * 0x10101LU >> 16;
+        bitset<8> data(b);
         for(int j = 0; j < 8; j++) {
             cout << (data[j] ? " " : "■");
         }
