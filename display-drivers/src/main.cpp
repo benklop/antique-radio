@@ -41,10 +41,10 @@ gu7000_image load_image(string filename) {
         for(int j=0; j < image.width; j++) {
             int swapped_bit = (current_bit % 8);
             if(*src.data(i,j)) {
-                this_byte[swapped_bit] = 1;
+                this_byte[swapped_bit] = 0;
             }
             else {
-                this_byte[swapped_bit] = 0;
+                this_byte[swapped_bit] = 1;
             }
             current_bit++;
 
