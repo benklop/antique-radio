@@ -20,7 +20,7 @@ using namespace std;
 using namespace cimg_library;
 
 struct gu7000_image {
-    vector<uint8_t> data;
+    uint8_t* data;
     int width;
     int height;
 };
@@ -32,6 +32,7 @@ gu7000_image load_image(string filename) {
     gu7000_image image;
     image.width = src.width();
     image.height = src.height();
+    vector<uint8_t> converted;
 
     int num_bytes = src.width() * (src.height()/8);
 
@@ -40,34 +41,20 @@ gu7000_image load_image(string filename) {
         for(int j=0; j < src.height() / 8; j++) {
             for(int k=0; k < 8; k++) {
                 if(*src.data(i, j * 8 + k)) {
-                    this_byte[k] = 1;
+                    this_byte[k] = 0;
                 }
                 else {
-                    this_byte[k] = 0;
+                    this_byte[k] = 1;
                 }
             }
             uint8_t b = (uint8_t)this_byte.to_ulong();
             b = ((b * 0x0802LU & 0x22110LU) | (b * 0x8020LU & 0x88440LU)) * 0x10101LU >> 16;
-            image.data.push_back(b);
+            converted.push_back(b);
         }
     }
+    image.data = converted.data();
     cout << "success!" << endl;
     return image;
-}
-
-void render_image(gu7000_image image) {
-    int bpr = image.width / 8;
-    cout << "image uses " << image.data.size() << " 8 bit bytes" << endl;
-    for(int i = 0; i < image.data.size(); i++) {
-        unit8_t b = image.data[i];
-        b = ((b * 0x0802LU & 0x22110LU) | (b * 0x8020LU & 0x88440LU)) * 0x10101LU >> 16;
-        bitset<8> data(b);
-        for(int j = 0; j < 8; j++) {
-            cout << (data[j] ? " " : "■");
-        }
-        if(i % bpr == 1)
-            cout << endl;
-    }
 }
 
 int main() {
@@ -83,6 +70,5 @@ int main() {
     }
 
     gu7000_image image = load_image(reader.Get("images", "initial", ""));
-    render_image(image);
     vfd.GU7000_drawImage(image.width, image.height, image.data.data());
 }
