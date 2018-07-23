@@ -2,7 +2,9 @@
 #include "../driver/Noritake_VFD_GU7000.h"
 #include "Config.h"
 
-//libraries
+#include "boost/dynamic_bitset.hpp"
+
+//included libraries
 #include "INIReader.h"
 #include "../cimg/CImg.h"
 
@@ -18,7 +20,7 @@ using namespace std;
 using namespace cimg_library;
 
 struct gu7000_image {
-    uint8_t * data;
+    vector<uint8_t> data;
     int width;
     int height;
 };
@@ -31,20 +33,37 @@ gu7000_image load_image(string filename) {
     image.width = src.width();
     image.height = src.height();
 
-    uint8_t data[image.width * image.height];
-    for (int i=0; i < (image.width * image.height) / 8; i++) {
-        for(int j=0; j < 8; j++) {
-            int this_bit = i*8 + j;
-            int col = this_bit + 1 % (image.width);
-            int row = this_bit + 1 / (image.width);
-            if(*src.data(row, col) == true) {
-                data[i] |= (1<<j);
+    int current_bit = 0;
+    for (int i=0; i < image.height; i++) {
+        bitset<8> this_byte(0);
+        for(int j=0; j < image.width; j++) {
+            if(*src.data(i,j)) {
+                this_byte[current_bit % 8] = 1;
             }
+            else {
+                this_byte[current_bit % 8] = 0;
+            }
+            current_bit++;
+            if(current_bit % 8 == 0) {
+                image.data.push_back((uint8_t)this_byte.to_ulong());
+            }   
         }
     }
-    image.data = data;
     cout << "success!" << endl;
     return image;
+}
+
+void render_image(gu7000_image image) {
+    int bpr = image.width / 8;
+    cout << "image uses " << image.data.size() << " 8 bit bytes" << endl;
+    for(int i = 0; i < image.data.size(); i++) {
+        bitset<8> data(image.data[i]);
+        for(int j = 0; j < 8; j++) {
+            cout << data[j];
+        }
+        if(i % bpr == 1)
+            cout << endl;
+    }
 }
 
 int main() {
@@ -59,5 +78,6 @@ int main() {
     }
 
     gu7000_image image = load_image(reader.Get("images", "initial", ""));
-    vfd.GU7000_drawImage(image.width, image.height, image.data);
+    render_image(image);
+    vfd.GU7000_drawImage(image.width, image.height, image.data.data());
 }
