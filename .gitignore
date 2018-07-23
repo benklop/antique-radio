@@ -4,3 +4,5 @@ display-drivers/Makefile
 display-drivers/Config.h
 display-drivers/cmake_install.cmake
 python/*.pyc
+display-drivers/libgu7000.a
+display-drivers/vfd-display
