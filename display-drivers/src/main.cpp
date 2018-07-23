@@ -70,5 +70,5 @@ int main() {
     }
 
     gu7000_image image = load_image(reader.Get("images", "initial", ""));
-    vfd.GU7000_drawImage(image.width, image.height, image.data.data());
+    vfd.GU7000_drawImage(image.width, image.height, image.data);
 }
