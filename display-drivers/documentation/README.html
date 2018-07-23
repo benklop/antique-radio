@@ -1,0 +1,1134 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Noritake itron GU-7000 Code Library</title>
+    <link rel=stylesheet type=text/css href=style.css>
+</head>
+
+<body>
+    <img alt="Noritake itron - The brighter side of electronics" src="logo_blue_tagline_small_600x119.png"/>
+    <h1>Noritake itron GU-7000 Code Library</h1>
+    
+    <div id="colophone" class="section">
+    <table>
+    <tbody><tr><td><b>Document Number</b>:</td> <td>E-M-0127-00</td></tr>
+    <tr><td><b>Issue Date</b>:</td> <td>08/20/2012</td></tr>
+    </tbody></table>
+
+    <br>
+
+    <table>
+    <tbody><tr>
+        <td><b>Noritake Co., Inc.</b><br>
+            <b>Electronics Division Headquarter</b><br>
+            2635 Clearbrook Drive<br>
+            Arlington Heights, IL 60005<br>
+            Toll free: (800) 779 - 5846<br>
+            Phone: (847) 439 - 9020<br>
+            support.ele@noritake.com<br>
+            <a href="www.noritake-elec.com">www.noritake-elec.com</a></td>
+        
+        <td><b>East Coast</b><br>
+            <b>New Jersey Branch</b><br>
+            15-22 Fair Lawn Ave.<br>
+            Fair Lawn, NJ 07410<br>
+            Toll free: (888) 296 - 3423<br>
+            Phone: (201) 475 - 5200<br>
+            Fax: (201) 796 - 2269
+        </td>
+        <td><b>Midwest, Canada, and Mexico</b><br>
+            Chicago Branch<br>
+            2635 Clearbrook Dr.<br>
+            Arlington Heights, IL 60005<br>
+            Toll free: (800) 779 - 5846<br>
+            Phone: (847) 439 - 9020<br>
+            Fax: (847) 593 - 2285
+        </td>
+        <td><b>West Coast</b><br>
+            <b>Los Angeles Branch</b><br>
+            21081 S. Western Ave. Ste 180<br>
+            Torrance, CA 90501<br>
+            Toll free: (888) 795 - 3423<br>
+            Phone: (310) 320 - 1700<br>
+            Fax: (310) 320 - 2900
+        </td>
+    </tr>
+    </tbody></table>
+
+
+    <p>You must agree this terms and conditions. This software is
+    provided by Noritake Co., Inc "AS IS" and any express or
+    implied warranties, including, but not limited to, the implied
+    warranties of merchantability and fitness for a particular
+    purpose are disclaimed. In no event shall the copyright owner
+    or contributors be liable for any direct, indirect, incidental,
+    special, exemplary, or consequential damages (including, but
+    not limited to, procurement of substitute goods or services;
+    loss of use, data, or profits; or business interruption)
+    however caused and on any theory of liability, whether in
+    contract, strict liability, or sort (including negligence or
+    otherwise) arising in any way out of the use of this software,
+    even if advised of the possibility of such damage.
+
+    <p>If this document is distributed with software that includes
+    an end user agreement, this document, as well as the software
+    described in it, is furnished under license and may be used
+    or copied only in accordance with the terms of such license.
+    Except as permitted by any such license, no part of this
+    document may be reproduced, stored in a retrieval system, or
+    transmitted, in any form or by any means, electronic,
+    mechanical, recording, or otherwise, without the prior
+    written permission of Noritake Co., Inc. Please note that
+    the content in this document is protected under copyright law
+    even if it is not distributed with software that includes
+    an end user license agreement.
+
+    <p>The content of this document is furnished for informational
+    use only, is subject to change without notice, and should
+    not be construed as a commitment by Noritake Co., Inc.
+    Noritake Co., Inc. assumes no responsibility or liability
+    for any errors or inaccuracies that may appear in the
+    informational content contained in this document.
+
+    <p>Any references to company names in sample codes are for
+    demonstration purposes only and are not intended to refer to
+    any actual organization.
+
+    <p>Noritake and Itron are either registered trademarks or
+    trademarks of Noritake Co., Inc. in the United States and/or
+    other countries.
+
+    <p>© 2012 Noritake Co., Inc.  All rights reserved
+
+    <p>Noritake Co., Inc.,
+    2635 Clearbrook Drive,
+    Arlington Heights, IL 60005, USA.
+    </p></div>
+    
+    <h2>Contents</h2>
+    <section>
+        <ul>
+            <li><a href=#using_the_library>Using the Library</a>
+                <ul>
+                    <li><a href=#about_the_library>About the Library</a>
+                    <li><a href=#installation>Installation</a>
+                    <li><a href=#configuration>Configuration</a>
+                        <ul>
+                            <li><a href=#mandatory_options>Mandatory Options</a>
+                            <li><a href=#asynchronous_serial_interface_avr>Asynchronous Serial Interface for Atmel&reg; AVR</a>
+                            <li><a href=#synchronous_serial_interface_avr>Synchronous Serial Interface for Atmel&reg; AVR</a>
+                            <li><a href=#parallel_interface_avr>Parallel Interface for Atmel&reg; AVR</a>
+                            <li><a href=#linux_serial_device_interface>Linux Serial Device Interface</a>
+                        </ul>
+                </ul>
+            <li><a href=#type_and_method_reference>Type and Method Reference</a>
+        </ul>
+    </section>
+    
+    <h2 id=using_the_library>Using the Library</h2>
+    <section>
+        <h3 id=about_the_library>About the Library</h3>
+        <section>
+            <p>This library provides access to the base functionality of
+            the GU-7000 series modules using 8-bit Atmel&reg; AVR or Linux.
+            <p>This library is intended for use with the following modules:
+            <blockquote>
+                GU***X***-7***
+            </blockquote>
+            <p>Example:
+                <ul>
+                    <li>GU140X32F-7000
+                    <li>GU140X16G-7003
+                    <li>GU160X80E-7900B
+                </ul>
+        </section>
+                
+        <h3 id=installation>Installation</h3>
+        <section>
+            <section style=float:right>
+                <img src=file-structure.png>
+            </section>
+            <section style=margin-left:0>
+                <ol>
+                    <li>Download the 
+                        <a href='http://www.noritake-elec.com/codeLibrary.php'>
+                            code library
+                        </a>.
+                    <li>Unzip the library file to your work area.
+                    <li>Extract the demo folder into the folder for the code library.
+                    <li>Set the configuration options in config.h included with the code library.
+                        See the <i>Configuration</i> section.
+                    <li>Open the <i>Demo.aps</i> project file with AVR Studio 4<br>
+                        or <i>Demo.atsln</i> in Atmel Studio 6<br>
+                        or build <i>Makefile</i> on Linux.
+                </ol>
+            </section>
+        </section>
+        <h3 id=configuration>Configuration</h3>
+        <section>
+            <p>The library is configured by setting preprocessor
+            values in the <i>config.h</i> file in the <i>src</i>
+            directory of the library. The configuration options in the
+            code library's <i>config.h</i> must match the host
+            system's hardware setup.
+            
+            <p>The library is designed so that all of its source files
+            are compiled even if they are not used. For example, when
+            set up to use the parallel interface, the serial interface
+            files will automatically disable themselves based on the
+            options set in <i>config.h</i>.
+            
+            <h4 id=mandatory_options>Mandatory Options</h4>
+            <section>
+                <p>There are a few mandatory options that must be set
+                regardless of the hardware setup.
+                
+                <table>
+                <thead><tr><th>Name</th><th>Description</th><th>Example</th></tr></thead>
+                <tr> <td><h4>F_CPU</h4></td>
+                    <td>
+                        CPU frequency in Hertz.
+                        <p>This is only used for Atmel&reg; AVR.
+                        </td>
+                    <td>16000000UL for 16MHz</td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_RESET_DELAY</h5></td>
+                    <td>
+                        <p>The delay time in milliseconds before beginning communication with the
+                        module. This allows the VFD module to start up as well
+                        as avoids program restarts due to in-circuit debuggers.
+                        <p>This value will vary depend on the power supply and
+                        hardware setup. 500ms is generally sufficient
+                    </td>
+                    <td>500 for 500ms</td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_HEIGHT</h5></td>
+                    <td>Height of the display in characters.
+                        This number is given after the “CU” in the model number:
+                        <code>CU__***-Y***</code>
+                    </td>
+                    <td>24 for CU24043-Y1A</td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_WIDTH</h5></td>
+                    <td>Width of the display in characters.
+                        This number is given two digits after the first two digits after the “CU” in the model number:
+                        <code>CU**__*-Y***</code>
+                    </td>
+                    <td>04 for CU24043-Y1A</td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_MODEL_CLASS</h5></td>
+                    <td>Indicates the capabilities of the module.
+                        The model class number is the last 4-digit number in the model
+                        number: <code>GU***X****-____</td>
+                    <td>
+                        7040 for GU140X16G-7040A;<br>
+                        7903 for GU140X16G-7903
+                    </td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_GENERATION</h5></td>
+                    <td>Indicates the generation of the module.
+                        If the last letter in the model number is B,
+                        the generation is 'B'. Otherwise, 0.
+                    </td>
+                    <td>
+                        0 for GU140X16G-7003;<br>
+                        0 for GU140X16G-7040A;<br>
+                        'B' for GU140X16G-7003B;<br>
+                    </td>
+                </tr>
+                </table>
+            </section>
+            
+            <h4 id=asynchronous_serial_interface_avr>Asynchronous Serial Interface for Atmel&reg; AVR</h4>
+            <section>
+                <table>
+                <thead><tr><th>Name</th><th>Description</th><th>Example</th></tr></thead>
+                <tr><td><h5>NORITAKE_VFD_INTERFACE</h5></td>
+                    <td>0 for serial interface</td>
+                    <td></td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_SERIAL_SYNC</h5></td>
+                    <td>0 for asynchronous serial</td>
+                    <td></td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_RS232</h5></td>
+                    <td>Determines the interface protocol.</td>
+                    <td>0 for models that end in 7003;<br>
+                        1 for models that do not end in 7003
+                    </td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_BAUD</h5></td>
+                    <td>The baud rate of the device.</td>
+                    <td>38400 for 38400bps</td>
+                </tr>
+                <tr><td><h5>OUT_PORT &amp; OUT_PIN</h5></td>
+                    <td>The serial data SIN port and pin.</td>
+                    <td>OUT_PORT = PORTA and OUT_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>BUSY_PORT &amp; BUSY_PIN</h5></td>
+                    <td>The serial SBUSY port and pin.</td>
+                    <td>BUSY_PORT = PORTA and BUSY_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>RESET_PORT &amp; RESET_PIN</h5></td>
+                    <td>The serial RESET port and pin.</td>
+                    <td>RESET_PORT = PORTA and RESET_PIN = 1 for PA1</td>
+                </tr>
+                </table>
+            </section>
+            
+            <h4 id=synchronous_serial_interface_avr>Synchronous Serial Interface for Atmel&reg; AVR</h4>
+            <section>
+                <table>
+                <thead><tr><th>Name</th><th>Description</th><th>Example</th></tr></thead>
+                <tr><td><h5>NORITAKE_VFD_INTERFACE</h5></td>
+                    <td>0 for serial interface</td>
+                    <td></td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_SERIAL_SYNC</h5></td>
+                    <td>1 for synchronous serial</td>
+                    <td></td>
+                </tr>
+                <tr><td><h5>SCK_PORT &amp; SCK_PIN</h5></td>
+                    <td>The serial data SCK port and pin.</td>
+                    <td>SCK_PORT = PORTA and SCK_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>OUT_PORT &amp; OUT_PIN</h5></td>
+                    <td>The serial data SIN port and pin.</td>
+                    <td>OUT_PORT = PORTA and OUT_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>BUSY_PORT &amp; BUSY_PIN</h5></td>
+                    <td>The serial SBUSY port and pin.</td>
+                    <td>BUSY_PORT = PORTA and BUSY_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>RESET_PORT &amp; RESET_PIN</h5></td>
+                    <td>The serial RESET port and pin.</td>
+                    <td>RESET_PORT = PORTA and RESET_PIN = 1 for PA1</td>
+                </tr>
+                </table>
+            </section>
+            
+            <h4 id=parallel_interface_avr>Parallel Interface for Atmel&reg; AVR</h4>
+            <section>
+                <table>
+                <thead><tr><th>Name</th><th>Description</th><th>Example</th></tr></thead>
+                <tr><td><h5>NORITAKE_VFD_INTERFACE</h5></td>
+                    <td>1 for parallel interface</td>
+                    <td></td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_BUSY_CONNECTED</h5></td>
+                    <td>
+                        Indicates that PBUSY is connected on parallel pin 3.
+                        <p>This cannot be set at the same time as NORITAKE_VFD_RESET_CONNECTED.
+                        <p>Check the module specification for jumper settings or this option.
+                    </td>
+                    <td>0 if PBUSY is shared with D7<br>
+                        1 if PBUSY is connected to parallel pin 3
+                    </td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_RESET_CONNECTED</h5></td>
+                    <td>
+                        Indicates that /RESET is connected on parallel pin 3.
+                        <p>This cannot be set at the same time as NORITAKE_VFD_BUSY_CONNECTED.
+                        <p>Check the module specification for jumper settings or this option.
+                    </td>
+                    <td>0 if /RESET is not connected<br>
+                        1 if /RESET is connected to parallel pin 3
+                    </td>
+                </tr>
+                <tr><td><h5>WR_PORT &amp; WR_PIN</h5></td>
+                    <td>The WR signal port and pin.</td>
+                    <td>WR_PORT = PORTA and WR_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>BUSY_PORT &amp; BUSY_PIN</h5></td>
+                    <td>The PBUSY signal port and pin.</td>
+                    <td>BUSY_PORT = PORTA and BUSY_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>D0_PORT &amp; D0_PIN</h5></td>
+                    <td>The D0 signal port and pin.</td>
+                    <td>D0_PORT = PORTA and D0_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>D1_PORT &amp; D1_PIN</h5></td>
+                    <td>The D1 signal port and pin.</td>
+                    <td>D1_PORT = PORTA and D1_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>D2_PORT &amp; D2_PIN</h5></td>
+                    <td>The D2 signal port and pin.</td>
+                    <td>D2_PORT = PORTA and D2_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>D3_PORT &amp; D3_PIN</h5></td>
+                    <td>The D3 signal port and pin.</td>
+                    <td>D3_PORT = PORTA and D3_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>D4_PORT &amp; D4_PIN</h5></td>
+                    <td>The D4 signal port and pin.</td>
+                    <td>D4_PORT = PORTA and D4_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>D5_PORT &amp; D5_PIN</h5></td>
+                    <td>The D5 signal port and pin.</td>
+                    <td>D5_PORT = PORTA and D5_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>D6_PORT &amp; D6_PIN</h5></td>
+                    <td>The D6 signal port and pin.</td>
+                    <td>D6_PORT = PORTA and D6_PIN = 1 for PA1</td>
+                </tr>
+                <tr><td><h5>D7_PORT &amp; D7_PIN</h5></td>
+                    <td>The D7 signal port and pin.</td>
+                    <td>D7_PORT = PORTA and D7_PIN = 1 for PA1</td>
+                </tr>
+                
+                
+                </table>
+            </section>
+            
+            <h4 id=linux_serial_device_interface>Linux Serial Device Interface</h4>
+            <p>The Linux serial device interface uses Linux character
+            device files to interface with the module.
+            <p><b class=attn>Make sure logged in user has read and write access to
+            the device file before using the library.</b>
+            <p>You can give non-root users access to the device file with:
+                <blockquote>
+                    <code>chmod o+rw /dev/ttyUSB0</code>
+                </blockquote>
+            <p>You must be root or running with elevated privilige
+                through <code>sudo</code> or <code>su</code> to
+                run this command.
+            
+            <section>
+                <table>
+                <thead><tr><th>Name</th><th>Description</th><th>Example</th></tr></thead>
+                <tr><td><h5>NORITAKE_VFD_INTERFACE</h5></td>
+                    <td>1 for Linux serial device serial interface</td>
+                    <td></td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_FILE</h5></td>
+                    <td>The path to the device file connected to the module.</td>
+                    <td>/dev/ttyUSB0</td>
+                </tr>
+                <tr><td><h5>NORITAKE_VFD_BAUD</h5></td>
+                    <td>The baud rate of the device.</td>
+                    <td>38400 for 38400bps</td>
+                </tr>
+                </table>
+            </section>
+        </section>
+    </section>
+    
+    <h2 id=type_and_method_reference>Type and Method Reference</h2>
+    <section>
+<!-- METHODS -->
+        <h3>Index</h3><ul class=index><li>Types<ul><li><a href="#ImageMemoryArea">ImageMemoryArea</a><li><a href="#ScrollMode">ScrollMode</a><li><a href="#CompositionMode">CompositionMode</a><li><a href="#FontFormat">FontFormat</a><li><a href="#AsciiVariant">AsciiVariant</a><li><a href="#Charset">Charset</a><li><a href="#MultibyteCharset">MultibyteCharset</a><li><a href="#ScreenSaver">ScreenSaver</a></ul><li>Printing Methods<ul><li><a href="#print(char-c)">void print(char c);</a><li><a href="#print(const-char-*str)">void print(const char *str);</a><li><a href="#print(const-char-*buffer,-size_t-size)">void print(const char *buffer, size_t size);</a><li><a href="#print(int-number,-uint8_t-base)">void print(int number, uint8_t base);</a><li><a href="#print(unsigned-number,-uint8_t-base)">void print(unsigned number, uint8_t base);</a><li><a href="#print(long-number,-uint8_t-base)">void print(long number, uint8_t base);</a><li><a href="#print(unsigned-long-number,-uint8_t-base)">void print(unsigned long number, uint8_t base);</a><li><a href="#print(unsigned-x,-uint8_t-y,-char-c)">void print(unsigned x, uint8_t y, char c);</a><li><a href="#print(unsigned-x,-uint8_t-y,-const-char-*str)">void print(unsigned x, uint8_t y, const char *str);</a><li><a href="#print(unsigned-x,-uint8_t-y,-const-char-*buffer,-uint8_t-len)">void print(unsigned x, uint8_t y, const char *buffer, uint8_t len);</a><li><a href="#print(unsigned-x,-uint8_t-y,-int-number,-uint8_t-base)">void print(unsigned x, uint8_t y, int number, uint8_t base);</a><li><a href="#print(unsigned-x,-uint8_t-y,-unsigned-number,-uint8_t-base)">void print(unsigned x, uint8_t y, unsigned number, uint8_t base);</a><li><a href="#print_p(const-char-*str)">void print_p(const char *str);</a><li><a href="#print_p(unsigned-x,-uint8_t-y,-const-char-*str)">void print_p(unsigned x, uint8_t y, const char *str);</a><li><a href="#print_p(unsigned-x,-uint8_t-y,-const-char-*buffer,-uint8_t-len)">void print_p(unsigned x, uint8_t y, const char *buffer, uint8_t len);</a><li><a href="#println(char-c)">void println(char c);</a><li><a href="#println(const-char-*str)">void println(const char *str);</a><li><a href="#println(const-char-*buffer,-size_t-size)">void println(const char *buffer, size_t size);</a><li><a href="#println(int-number,-uint8_t-base)">void println(int number, uint8_t base);</a><li><a href="#println(unsigned-number,-uint8_t-base)">void println(unsigned number, uint8_t base);</a><li><a href="#println(long-number,-uint8_t-base)">void println(long number, uint8_t base);</a><li><a href="#println(unsigned-long-number,-uint8_t-base)">void println(unsigned long number, uint8_t base);</a></ul><li>Character-Based<ul><li><a href="#GU7000_back()">void GU7000_back();</a><li><a href="#GU7000_forward()">void GU7000_forward();</a><li><a href="#GU7000_lineFeed()">void GU7000_lineFeed();</a><li><a href="#GU7000_home()">void GU7000_home();</a><li><a href="#GU7000_carriageReturn()">void GU7000_carriageReturn();</a><li><a href="#GU7000_setCursor(unsigned-x,-unsigned-y)">void GU7000_setCursor(unsigned x, unsigned y);</a><li><a href="#GU7000_cursorOn()">void GU7000_cursorOn();</a><li><a href="#GU7000_cursorOff()">void GU7000_cursorOff();</a></ul><li>Module Control<ul><li><a href="#GU7000_clearScreen()">void GU7000_clearScreen();</a><li><a href="#GU7000_init()">void GU7000_init();</a><li><a href="#GU7000_reset()">void GU7000_reset();</a><li><a href="#GU7000_setScreenBrightness(unsigned-level)">void GU7000_setScreenBrightness(unsigned level);</a><li><a href="#GU7000_wait(uint8_t-time)">void GU7000_wait(uint8_t time);</a><li><a href="#GU7000_displayOn()">void GU7000_displayOn();</a><li><a href="#GU7000_displayOff()">void GU7000_displayOff();</a><li><a href="#GU7000_screenSaver(ScreenSaver-mode)">void GU7000_screenSaver(ScreenSaver mode);</a></ul><li>Fonts<ul><li><a href="#GU7000_setFontStyle(bool-proportional,-bool-evenSpacing)">void GU7000_setFontStyle(bool proportional, bool evenSpacing);</a><li><a href="#GU7000_setFontSize(uint8_t-x,-uint8_t-y,-bool-tall)">void GU7000_setFontSize(uint8_t x, uint8_t y, bool tall);</a><li><a href="#GU7000_useCustomChars(bool-enable)">void GU7000_useCustomChars(bool enable);</a><li><a href="#GU7000_defineCustomChar(uint8_t-code,-FontFormat-format,-const-uint8_t-*data)">void GU7000_defineCustomChar(uint8_t code, FontFormat format, const uint8_t *data);</a><li><a href="#GU7000_deleteCustomChar(uint8_t-code,-FontFormat-format)">void GU7000_deleteCustomChar(uint8_t code, FontFormat format);</a></ul><li>Encoding<ul><li><a href="#GU7000_useMultibyteChars(bool-enable)">void GU7000_useMultibyteChars(bool enable);</a><li><a href="#GU7000_setMultibyteCharset(uint8_t-code)">void GU7000_setMultibyteCharset(uint8_t code);</a><li><a href="#GU7000_setAsciiVariant(AsciiVariant-code)">void GU7000_setAsciiVariant(AsciiVariant code);</a><li><a href="#GU7000_setCharset(Charset-code)">void GU7000_setCharset(Charset code);</a></ul><li>Screen Effects<ul><li><a href="#GU7000_invertOn()">void GU7000_invertOn();</a><li><a href="#GU7000_invertOff()">void GU7000_invertOff();</a><li><a href="#GU7000_setCompositionMode(CompositionMode-mode)">void GU7000_setCompositionMode(CompositionMode mode);</a><li><a href="#GU7000_setScrollMode(ScrollMode-mode)">void GU7000_setScrollMode(ScrollMode mode);</a><li><a href="#GU7000_setHorizScrollSpeed(uint8_t-speed)">void GU7000_setHorizScrollSpeed(uint8_t speed);</a><li><a href="#GU7000_scrollScreen(unsigned-x,-unsigned-y,-unsigned-count,-uint8_t-speed)">void GU7000_scrollScreen(unsigned x, unsigned y, unsigned count, uint8_t speed);</a><li><a href="#GU7000_blinkScreen()">void GU7000_blinkScreen();</a><li><a href="#GU7000_blinkScreen(bool-enable,-bool-reverse,-uint8_t-on,-uint8_t-off,-uint8_t-times)">void GU7000_blinkScreen(bool enable, bool reverse, uint8_t on, uint8_t off, uint8_t times);</a></ul><li>Drawing<ul><li><a href="#GU7000_drawImage(unsigned-width,-uint8_t-height,-const-uint8_t-*data)">void GU7000_drawImage(unsigned width, uint8_t height, const uint8_t *data);</a><li><a href="#GU7000_drawImage_p(unsigned-width,-uint8_t-height,-const-uint8_t-*data)">void GU7000_drawImage_p(unsigned width, uint8_t height, const uint8_t *data);</a><li><a href="#GU7000_drawFROMImage(unsigned-long-address,-uint8_t-srcHeight,-unsigned-width,-uint8_t-height)">void GU7000_drawFROMImage(unsigned long address, uint8_t srcHeight, unsigned width, uint8_t height);</a><li><a href="#GU7000_drawImage(unsigned-x,-uint8_t-y,-ImageMemoryArea-area,-unsigned-long-address,-uint8_t-srcHeight,-unsigned-width,-uint8_t-height,-unsigned-offsetx,-unsigned-offsety)">void GU7000_drawImage(unsigned x, uint8_t y, ImageMemoryArea area, unsigned long address, uint8_t srcHeight, unsigned width, uint8_t height, unsigned offsetx, unsigned offsety);</a><li><a href="#GU7000_drawImage(unsigned-x,-uint8_t-y,-ImageMemoryArea-area,-unsigned-long-address,-unsigned-width,-uint8_t-height)">void GU7000_drawImage(unsigned x, uint8_t y, ImageMemoryArea area, unsigned long address, unsigned width, uint8_t height);</a><li><a href="#GU7000_drawImage_p(unsigned-x,-uint8_t-y,-unsigned-width,-uint8_t-height,-const-uint8_t-*data)">void GU7000_drawImage_p(unsigned x, uint8_t y, unsigned width, uint8_t height, const uint8_t *data);</a><li><a href="#GU7000_drawImage(unsigned-x,-uint8_t-y,-unsigned-width,-uint8_t-height,-const-uint8_t-*data)">void GU7000_drawImage(unsigned x, uint8_t y, unsigned width, uint8_t height, const uint8_t *data);</a><li><a href="#GU7000_fillRect(unsigned-x0,-unsigned-y0,-unsigned-x1,-unsigned-y1,-bool-on)">void GU7000_fillRect(unsigned x0, unsigned y0, unsigned x1, unsigned y1, bool on);</a></ul><li>Window and Screen<ul><li><a href="#GU7000_selectWindow(uint8_t-window)">void GU7000_selectWindow(uint8_t window);</a><li><a href="#GU7000_defineWindow(uint8_t-window,-unsigned-x,-unsigned-y,-unsigned-width,-unsigned-height)">void GU7000_defineWindow(uint8_t window, unsigned x, unsigned y, unsigned width, unsigned height);</a><li><a href="#GU7000_deleteWindow(uint8_t-window)">void GU7000_deleteWindow(uint8_t window);</a><li><a href="#GU7000_joinScreens()">void GU7000_joinScreens();</a><li><a href="#GU7000_separateScreens()">void GU7000_separateScreens();</a></ul><li>LED Backlight Control<ul><li><a href="#GU7000_setBacklightColor(uint8_t-r,-uint8_t-g,-uint8_t-b)">void GU7000_setBacklightColor(uint8_t r, uint8_t g, uint8_t b);</a><li><a href="#GU7000_setBacklightColor(unsigned-rgb)">void GU7000_setBacklightColor(unsigned rgb);</a></ul></ul>
+        <h3>Types</h3>
+        <section>
+                <h4 id="ImageMemoryArea">ImageMemoryArea</h4>
+                <section>
+                    <p> Identifies the memory area to use in an operation. <h5>Users</h5> <ul> <li><a href="#GU7000_drawImage(ImageMemoryArea-area,-unsigned-long-address,-uint8_t-srcHeight,-unsigned-width,-uint8_t-height)">GU7000_drawImage(ImageMemoryArea area, unsigned long address, uint8_t srcHeight, unsigned width, uint8_t height)</a> <li><a href="#GU7000_drawImage(unsigned-x,-uint8_t-y,-ImageMemoryArea-area,-unsigned-long-address,-uint8_t-srcHeight,-unsigned-width,-uint8_t-height,-unsigned-offsetx,-unsigned-offsety)">GU7000_drawImage(unsigned x, uint8_t y, ImageMemoryArea area, unsigned long address, uint8_t srcHeight, unsigned width, uint8_t height, unsigned offsetx, unsigned offsety)</a> <li><a href="#GU7000_drawImage(unsigned-x,-uint8_t-y,-ImageMemoryArea-area,-unsigned-long-address,-unsigned-width,-uint8_t-height)">GU7000_drawImage(unsigned x, uint8_t y, ImageMemoryArea area, unsigned long address, unsigned width, uint8_t height)</a> <li><a href="#GU7000_defineImage(ImageMemoryArea-area,-unsigned-addr,-unsigned-width,-uint8_t-height,-const-uint8_t-*data)">GU7000_defineImage(ImageMemoryArea area, unsigned addr, unsigned width, uint8_t height, const uint8_t *data)</a> <li><a href="#GU7000_defineImage_p(ImageMemoryArea-area,-unsigned-addr,-unsigned-width,-uint8_t-height,-const-uint8_t-*data)">GU7000_defineImage_p(ImageMemoryArea area, unsigned addr, unsigned width, uint8_t height, const uint8_t *data)</a> <li><a href="#GU7000_scrollImage(ImageMemoryArea-area,-unsigned-long-address,-uint8_t-srcHeight,-unsigned-width,-uint8_t-height,-uint8_t-speed)">GU7000_scrollImage(ImageMemoryArea area, unsigned long address, uint8_t srcHeight, unsigned width, uint8_t height, uint8_t speed)</a> </ul> <aside>Only GU-79** modules have the Flash ROM image memory area.</aside>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>FlashImageArea</td><td> 1: FlashROM on the module; contents until it is overwritten</td></tr>
+                        <tr><td>ScreenImageArea</td><td> 2: reflects the contents of the screen</td></tr>
+                    </table>
+                </section>
+                <h4 id="ScrollMode">ScrollMode</h4>
+                <section>
+                    <p> Identifies scrolling and wrapping behavior. <h5>Users</h5> <ul> <li><a href="#GU7000_setScrollMode(ScrollMode-mode)">GU7000_setScrollMode(ScrollMode mode)</a> </ul>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>WrappingMode</td><td> 1: When the cursor reaches the right end of the screen, the cursor moves to the left end of the next line. If on the last line, the cursor moves to the home position (0, 0).</td></tr>
+                        <tr><td>VertScrollMode</td><td> 2: When the cursor reaches the right end of the screen, the cursor moves to the left end of the next line. If on the last line, the screen is moved up by 8 dots. The bottom 8 dots are cleared. The top 8 dots are lost.</td></tr>
+                        <tr><td>HorizScrollMode</td><td> 3:<aside>GU7000_lineFeed() is ignored in this mode.</aside> When the cursor reaches the right end of the screen, the current line is shifted left by the size of one character. The space to the right is cleared. The cursor is not moved.</td></tr>
+                    </table>
+                </section>
+                <h4 id="CompositionMode">CompositionMode</h4>
+                <section>
+                    <p> Identifies the way that new images and text are combined with the contents that are already on the screen. <h5>Users</h5> <ul> <li><a href="#GU7000_setCompositionMode(CompositionMode-mode)">GU7000_setCompositionMode(CompositionMode mode)</a> </ul>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>NormalCompositionMode</td><td> 0: screen image is cleared and the source appears exactly</td></tr>
+                        <tr><td>OrCompositionMode</td><td> 1: dots are lit if either the source or screen image specify it lit</td></tr>
+                        <tr><td>AndCompositionMode</td><td> 2: dots are lit only if both the source and screen image specify it lit</td></tr>
+                        <tr><td>XorCompositionMode</td><td> 2: dots are lit only if either the source or screen image specify it lit but not both</td></tr>
+                    </table>
+                </section>
+                <h4 id="FontFormat">FontFormat</h4>
+                <section>
+                    <p> Identifies the size and data format <h5>Users</h5> <ul> <li><a href="#GU7000_setFontSize(FontFormat-format,-uint8_t-x,-uint8_t-y)">GU7000_setFontSize(FontFormat format, uint8_t x, uint8_t y)</a> <li><a href="#GU7000_defineCustomChar(uint8_t-code,-FontFormat-format,-const-uint8_t-*data)">GU7000_defineCustomChar(uint8_t code, FontFormat format, const uint8_t *data)</a> <li><a href="#GU7000_deleteCustomChar(uint8_t-code,-FontFormat-format)">GU7000_deleteCustomChar(uint8_t code, FontFormat format)</a> </ul>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>GU70005x7Format</td><td> 1: 5&times;7 font</td></tr>
+                        <tr><td>GU70007x8Format</td><td> 1: 5&times;7 font</td></tr>
+                        <tr><td>CUUFormat</td><td> 0x81: 5&times;8 font. This format is only for defining 6&times;8 custom characters in a different format; it does not exist on the module, itself</td></tr>
+                    </table>
+                </section>
+                <h4 id="AsciiVariant">AsciiVariant</h4>
+                <section>
+                    <p> Identifies national ASCII variants. <h5>Users</h5> <ul> <li><a href="#GU7000_setAsciiVariant(AsciiVariant-code)">GU7000_setAsciiVariant(AsciiVariant code)</a> </ul>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>AmericaAscii</td><td> 0</td></tr>
+                        <tr><td>FranceAscii</td><td> 1</td></tr>
+                        <tr><td>GermanyAscii</td><td> 2</td></tr>
+                        <tr><td>EnglandAscii</td><td> 3</td></tr>
+                        <tr><td>Denmark1Ascii</td><td> 4</td></tr>
+                        <tr><td>SweedenAscii</td><td> 5</td></tr>
+                        <tr><td>ItalyAscii</td><td> 6</td></tr>
+                        <tr><td>Spain1Ascii</td><td> 7</td></tr>
+                        <tr><td>JapanAscii</td><td> 8</td></tr>
+                        <tr><td>NorwayAscii</td><td> 9</td></tr>
+                        <tr><td>Denmark2Ascii</td><td> 10</td></tr>
+                        <tr><td>Spain2Ascii</td><td> 11</td></tr>
+                        <tr><td>LatinAmericaAscii</td><td> 12</td></tr>
+                        <tr><td>KoreaAscii</td><td> 13</td></tr>
+                    </table>
+                </section>
+                <h4 id="Charset">Charset</h4>
+                <section>
+                    <p> Identifies code page. <h5>Users</h5> <ul> <li><a href="#GU7000_setCharset(Charset-code)">GU7000_setCharset(Charset code)</a> </ul>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>CP437</td><td> 0</td></tr>
+                        <tr><td>EuroStdCharset</td><td> 0: CP437</td></tr>
+                        <tr><td>Katakana</td><td> 1</td></tr>
+                        <tr><td>CP850</td><td> 2</td></tr>
+                        <tr><td>MultilingualCharset</td><td> 2: CP850</td></tr>
+                        <tr><td>CP860</td><td> 3</td></tr>
+                        <tr><td>PortugeseCharset</td><td> 3: CP860</td></tr>
+                        <tr><td>CP863</td><td> 4</td></tr>
+                        <tr><td>CanadianFrenchCharset</td><td> 4: CP863</td></tr>
+                        <tr><td>CP865</td><td> 5</td></tr>
+                        <tr><td>NordicCharset</td><td> 5: CP865</td></tr>
+                        <tr><td>CP1252</td><td> 0x10</td></tr>
+                        <tr><td>CP866</td><td> 0x11</td></tr>
+                        <tr><td>Cyrillic2Charset</td><td> 0x11: CP866</td></tr>
+                        <tr><td>CP852</td><td> 0x12</td></tr>
+                        <tr><td>Latin2Charset</td><td> 0x12: CP852</td></tr>
+                        <tr><td>CP858</td><td> 0x13</td></tr>
+                    </table>
+                </section>
+                <h4 id="MultibyteCharset">MultibyteCharset</h4>
+                <section>
+                    <p> Identifies a multibyte character set. <h5>Users</h5> <ul> <li><a href="#GU7000_setMultibyteCharset(uint8_t-code)">GU7000_setMultibyteCharset(uint8_t code)</a> </ul>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>ShiftJIS</td><td> 0: JIS (X0208 Shift-JIS)</td></tr>
+                        <tr><td>JapaneseMBCS</td><td> 0: ShiftJIS</td></tr>
+                        <tr><td>KSC5601</td><td> 1: KSC5601-87</td></tr>
+                        <tr><td>KoreanMBCS</td><td> 1: KSC5601</td></tr>
+                        <tr><td>GB2312</td><td> 2: GB2312-80</td></tr>
+                        <tr><td>SimplifiedChineseMBCS</td><td> 2: GB2312</td></tr>
+                        <tr><td>Big5</td><td> 3: Big5</td></tr>
+                        <tr><td>TraditionalChineseMBCS</td><td> 3: Big5</td></tr>
+                    </table>
+                </section>
+                <h4 id="ScreenSaver">ScreenSaver</h4>
+                <section>
+                    <p> Screen saver. <h5>Users</h5> <ul> <li><a href="#GU7000_screenSaver()">GU7000_screenSaver()</a> </ul>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>AllDotsOffSaver</td><td> turns all dots off</td></tr>
+                        <tr><td>AllDotsOnSaver</td><td> turns all dots on</td></tr>
+                        <tr><td>InvertSaver</td><td> </td></tr>
+                    </table>
+                </section>
+        </section>
+        <h3>Printing Methods</h3>
+        <section>
+                <h4 id="print(char-c)">void print(char c);</h4>
+                <section>
+                    <p> Print a character. <aside>See <a href="#GU7000_setScrollMode(ScrollMode-mode)">GU7000_setScrollMode(ScrollMode mode)</a> for information on scrolling and wrapping.</aside>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>c</td><td> character to print</td></tr>
+                    </table>
+                </section>
+                <h4 id="print(const-char-*str)">void print(const char *str);</h4>
+                <section>
+                    <p> Print a string. <p>Each character is printed with <a href="#print(char-c)">print(char c)</a>.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>str</td><td> string to print</td></tr>
+                    </table>
+                </section>
+                <h4 id="print(const-char-*buffer,-size_t-size)">void print(const char *buffer, size_t size);</h4>
+                <section>
+                    <p> Print a buffer of the given size. <p>Each character is printed with <a href="#print(char-c)">print(char c)</a>.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>buffer</td><td> characters to print</td></tr>
+                        <tr><td>size</td><td> number of characters to print</td></tr>
+                    </table>
+                </section>
+                <h4 id="print(int-number,-uint8_t-base)">void print(int number, uint8_t base);</h4>
+                <section>
+                    <p> <aside>Arithmetic with a long, unsigned, or constant larger than INT_MAX will cause the long, unsigned, or unsigned long overload of this function to be used.</aside> Print a number in the given base. <p>Each character is printed with <a href="#print(char-c)">print(char c)</a>. <p>No leading space or zeros are used.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>number</td><td> number to print</td></tr>
+                        <tr><td>base</td><td> base to print in: 2 &le; base &le; 36</td></tr>
+                    </table>
+                </section>
+                <h4 id="print(unsigned-number,-uint8_t-base)">void print(unsigned number, uint8_t base);</h4>
+                <section>
+                    <p> <aside>Arithmetic with a long or constant larger than UINT_MAX will cause the long or unsigned long overload of this function to be used.</aside> Print a number in the given base. <p>No leading space or zeros are used. <p>Each character is printed with <a href="#print(char-c)">print(char c)</a>.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>number</td><td> number to print</td></tr>
+                        <tr><td>base</td><td> base to print in: 2 &le; base &le; 36</td></tr>
+                    </table>
+                </section>
+                <h4 id="print(long-number,-uint8_t-base)">void print(long number, uint8_t base);</h4>
+                <section>
+                    <p> <aside>Arithmetic with an unsigned long or constant larger than LONG_MAX will cause the unsigned long overload of this function to be used.</aside> Print a number in the given base. <p>No leading space or zeros are used. <p>Each character is printed with <a href="#print(char-c)">print(char c)</a>.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>number</td><td> number to print</td></tr>
+                        <tr><td>base</td><td> base to print in: 2 &le; base &le; 36</td></tr>
+                    </table>
+                </section>
+                <h4 id="print(unsigned-long-number,-uint8_t-base)">void print(unsigned long number, uint8_t base);</h4>
+                <section>
+                    <p> Print a number in the given base. <p>No leading space or zeros are used. <p>Each character is printed with <a href="#print(char-c)">print(char c)</a>.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>number</td><td> number to print</td></tr>
+                        <tr><td>base</td><td> base to print in: 2 &le; base &le; 36</td></tr>
+                    </table>
+                </section>
+                <h4 id="print(unsigned-x,-uint8_t-y,-char-c)">void print(unsigned x, uint8_t y, char c);</h4>
+                <section>
+                    <p> <aside>Normal commands cannot be issued inside this command.</aside> <aside>This command is only available on Generation B.</aside> Print a character from (x, y). <p>The cursor is not moved. <p>Characters can be inverted for the duration of the command by sending character '\x11' and disabled by '\x10'. Inverting from <a href="#GU7000_invertOn()">GU7000_invertOn()</a> affects the characters printed with this command and can be disabled with '\x10'.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> x coordinate of top-left corner; -1 continues from the last unaligned print</td></tr>
+                        <tr><td>y</td><td> y coordinate of top-left corner</td></tr>
+                        <tr><td>c</td><td> character to print <br>0x10 disables inverted characters <br>0x11 enables inverted characters</td></tr>
+                    </table>
+                </section>
+                <h4 id="print(unsigned-x,-uint8_t-y,-const-char-*str)">void print(unsigned x, uint8_t y, const char *str);</h4>
+                <section>
+                    <p> <aside>No more than 255 characters can be printed at once.</aside> <aside>This command is only available on Generation B.</aside> Print a string from (x, y). <aside>See <a href="#print(unsigned-x,-uint8_t-y,-char-c)">print(unsigned x, uint8_t y, char c)</a> for additional information.</aside>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> x coordinate of top-left corner; -1 continues from the last unaligned print</td></tr>
+                        <tr><td>y</td><td> y coordinate of top-left corner</td></tr>
+                        <tr><td>str</td><td> string to print</td></tr>
+                    </table>
+                </section>
+                <h4 id="print(unsigned-x,-uint8_t-y,-const-char-*buffer,-uint8_t-len)">void print(unsigned x, uint8_t y, const char *buffer, uint8_t len);</h4>
+                <section>
+                    <p> <aside>No more than 255 characters can be printed at once.</aside> <aside>This command is only available on Generation B.</aside> Print a buffer from (x, y). <aside>See <a href="#print(unsigned-x,-uint8_t-y,-char-c)">print(unsigned x, uint8_t y, char c)</a> for additional information.</aside>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> x coordinate of top-left corner; -1 continues from the last unaligned print</td></tr>
+                        <tr><td>y</td><td> y coordinate of top-left corner</td></tr>
+                        <tr><td>buffer</td><td> characters to print</td></tr>
+                        <tr><td>len</td><td> number of characters to print</td></tr>
+                    </table>
+                </section>
+                <h4 id="print(unsigned-x,-uint8_t-y,-int-number,-uint8_t-base)">void print(unsigned x, uint8_t y, int number, uint8_t base);</h4>
+                <section>
+                    <p> <aside>Note that there are no long int overloads.</aside> <aside>This command is only available on Generation B.</aside> Print a number from (x, y).
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> x coordinate of top-left corner; -1 continues from the last unaligned print</td></tr>
+                        <tr><td>y</td><td> y coordinate of top-left corner</td></tr>
+                        <tr><td>number</td><td> number to print</td></tr>
+                        <tr><td>base</td><td> base to print in: 2 &le; base &le; 36</td></tr>
+                    </table>
+                </section>
+                <h4 id="print(unsigned-x,-uint8_t-y,-unsigned-number,-uint8_t-base)">void print(unsigned x, uint8_t y, unsigned number, uint8_t base);</h4>
+                <section>
+                    <p> <aside>Note that there are no long int overloads.</aside> <aside>This command is only available on Generation B.</aside> Print a number from (x, y).
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> x coordinate of top-left corner; -1 continues from the last unaligned print</td></tr>
+                        <tr><td>y</td><td> y coordinate of top-left corner</td></tr>
+                        <tr><td>number</td><td> number to print</td></tr>
+                        <tr><td>base</td><td> base to print in: 2 &le; base &le; 36</td></tr>
+                    </table>
+                </section>
+                <h4 id="print_p(const-char-*str)">void print_p(const char *str);</h4>
+                <section>
+                    <p> Print a string from host's ROM. <aside>No more than 255 characters can be printed at once.</aside>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>str</td><td> string to print</td></tr>
+                    </table>
+                </section>
+                <h4 id="print_p(unsigned-x,-uint8_t-y,-const-char-*str)">void print_p(unsigned x, uint8_t y, const char *str);</h4>
+                <section>
+                    <p> <aside>No more than 255 characters can be printed at once.</aside> <aside>This command is only available on Generation B.</aside> Print a string from (x, y) from the host's ROM.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> x coordinate of top-left corner; -1 continues from the last unaligned print</td></tr>
+                        <tr><td>y</td><td> y coordinate of top-left corner</td></tr>
+                        <tr><td>str</td><td> string to print</td></tr>
+                    </table>
+                </section>
+                <h4 id="print_p(unsigned-x,-uint8_t-y,-const-char-*buffer,-uint8_t-len)">void print_p(unsigned x, uint8_t y, const char *buffer, uint8_t len);</h4>
+                <section>
+                    <p> <aside>This command is only available on Generation B.</aside> Print a buffer from (x, y) from the host's ROM.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> x coordinate of top-left corner; -1 continues from the last unaligned print</td></tr>
+                        <tr><td>y</td><td> y coordinate of top-left corner</td></tr>
+                        <tr><td>str</td><td> characters to print</td></tr>
+                        <tr><td>len</td><td> number of characters to print</td></tr>
+                    </table>
+                </section>
+                <h4 id="println(char-c)">void println(char c);</h4>
+                <section>
+                    <p> Print a character and go to the next line as if <a href="#GU7000_carriageReturn()">GU7000_carriageReturn()</a> and <a href="#GU7000_lineFeed()">GU7000_lineFeed()</a> were called.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>c</td><td> character to print</td></tr>
+                    </table>
+                </section>
+                <h4 id="println(const-char-*str)">void println(const char *str);</h4>
+                <section>
+                    <p> Print a string and go to the next line as if <a href="#GU7000_carriageReturn()">GU7000_carriageReturn()</a> and <a href="#GU7000_lineFeed()">GU7000_lineFeed()</a> were called.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>str</td><td> string to print</td></tr>
+                    </table>
+                </section>
+                <h4 id="println(const-char-*buffer,-size_t-size)">void println(const char *buffer, size_t size);</h4>
+                <section>
+                    <p> Print a buffer of the given size and go to the next line as if <a href="#GU7000_carriageReturn()">GU7000_carriageReturn()</a> and <a href="#GU7000_lineFeed()">GU7000_lineFeed()</a> were called.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>buffer</td><td> characters to print</td></tr>
+                        <tr><td>size</td><td> number of characters to print</td></tr>
+                    </table>
+                </section>
+                <h4 id="println(int-number,-uint8_t-base)">void println(int number, uint8_t base);</h4>
+                <section>
+                    <p> <aside>Arithmetic with a long, unsigned, or constant larger than INT_MAX will cause the long, unsigned, or unsigned long overload of this function to be used.</aside> Print a number in the given base and go to the next line as if <a href="#GU7000_carriageReturn()">GU7000_carriageReturn()</a> and <a href="#GU7000_lineFeed()">GU7000_lineFeed()</a> were called. <p>No leading space or zeros are used. <p>Each character is printed with <a href="#print(char-c)">print(char c)</a>.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>number</td><td> number to print</td></tr>
+                        <tr><td>base</td><td> base to print in: 2 &le; base &le; 36</td></tr>
+                    </table>
+                </section>
+                <h4 id="println(unsigned-number,-uint8_t-base)">void println(unsigned number, uint8_t base);</h4>
+                <section>
+                    <p> <aside>Arithmetic with a long or constant larger than UINT_MAX will cause the long or unsigned long overload of this function to be used.</aside> Print a number in the given base. <p>No leading space or zeros are used and go to the next line as if <a href="#GU7000_carriageReturn()">GU7000_carriageReturn()</a> and <a href="#GU7000_lineFeed()">GU7000_lineFeed()</a> were called. <p>Each character is printed with <a href="#print(char-c)">print(char c)</a>.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>number</td><td> number to print</td></tr>
+                        <tr><td>base</td><td> base to print in: 2 &le; base &le; 36</td></tr>
+                    </table>
+                </section>
+                <h4 id="println(long-number,-uint8_t-base)">void println(long number, uint8_t base);</h4>
+                <section>
+                    <p> <aside>Arithmetic with an unsigned long or constant larger than LONG_MAX will cause the unsigned long overload of this function to be used.</aside> Print a number in the given base and go to the next line as if <a href="#GU7000_carriageReturn()">GU7000_carriageReturn()</a> and <a href="#GU7000_lineFeed()">GU7000_lineFeed()</a> were called. <p>No leading space or zeros are used. <p>Each character is printed with <a href="#print(char-c)">print(char c)</a>.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>number</td><td> number to print</td></tr>
+                        <tr><td>base</td><td> base to print in: 2 &le; base &le; 36</td></tr>
+                    </table>
+                </section>
+                <h4 id="println(unsigned-long-number,-uint8_t-base)">void println(unsigned long number, uint8_t base);</h4>
+                <section>
+                    <p> Print a number in the given base and go to the next line as if <a href="#GU7000_carriageReturn()">GU7000_carriageReturn()</a> and <a href="#GU7000_lineFeed()">GU7000_lineFeed()</a> were called. <p>No leading space or zeros are used. <p>Each character is printed with <a href="#print(char-c)">print(char c)</a>.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>number</td><td> number to print</td></tr>
+                        <tr><td>base</td><td> base to print in: 2 &le; base &le; 36</td></tr>
+                    </table>
+                </section>
+        </section>
+        <h3>Character-Based</h3>
+        <section>
+                <h4 id="GU7000_back()">void GU7000_back();</h4>
+                <section>
+                    <p> Move the cursor back one character position in the current font. <p>If the cursor is within one character position of the left of the screen, the cursor moves to the last character position of the previous line. If on the first line when this happens, the cursor does not move.
+                </section>
+                <h4 id="GU7000_forward()">void GU7000_forward();</h4>
+                <section>
+                    <p> Move the cursor forward one character position in the current font. <p>If the cursor is within one character position of the right of the screen, the cursor moves to the first character position of the next line. If on the last line when this happens, the cursor moves to the home position (0, 0).
+                </section>
+                <h4 id="GU7000_lineFeed()">void GU7000_lineFeed();</h4>
+                <section>
+                    <p> <aside>This command is ignored in horizontal scrolling modes.</aside> Move the cursor down one line. <p>If the cursor is on the last line, then the cursor is moved to the home position (0, 0).
+                </section>
+                <h4 id="GU7000_home()">void GU7000_home();</h4>
+                <section>
+                    <p> Move the cursor to the home position (0, 0).
+                </section>
+                <h4 id="GU7000_carriageReturn()">void GU7000_carriageReturn();</h4>
+                <section>
+                    <p> Move the cursor to the beginning of the current line.
+                </section>
+                <h4 id="GU7000_setCursor(unsigned-x,-unsigned-y)">void GU7000_setCursor(unsigned x, unsigned y);</h4>
+                <section>
+                    <p> Set cursor to the given postion. <p>If the position is invalid, the command is ignored. <p>This command may be used to set the cursor into the hidden memory area.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> target x coordinate</td></tr>
+                        <tr><td>y</td><td> target y coordinate</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_cursorOn()">void GU7000_cursorOn();</h4>
+                <section>
+                    <p> Turn the cursor on.
+                </section>
+                <h4 id="GU7000_cursorOff()">void GU7000_cursorOff();</h4>
+                <section>
+                    <p> Turn the cursor off.
+                </section>
+        </section>
+        <h3>Module Control</h3>
+        <section>
+                <h4 id="GU7000_clearScreen()">void GU7000_clearScreen();</h4>
+                <section>
+                    <p> Clear the screen and move the cursor to the home position (0, 0) of the current screen. <p>If in separate screen mode, only one of the two screens is cleared. If in the hidden memory area, the cursor returns to (0, 0) of the hidden memory area not of the visible screen.
+                </section>
+                <h4 id="GU7000_init()">void GU7000_init();</h4>
+                <section>
+                    <p> Initialize the module.
+                </section>
+                <h4 id="GU7000_reset()">void GU7000_reset();</h4>
+                <section>
+                    <p> Reset the module.
+                </section>
+                <h4 id="GU7000_setScreenBrightness(unsigned-level)">void GU7000_setScreenBrightness(unsigned level);</h4>
+                <section>
+                    <p> Set screen brightness.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>level</td><td> percent of capacity (rounded to next 12.5%): 0 &le; level &le; 100</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_wait(uint8_t-time)">void GU7000_wait(uint8_t time);</h4>
+                <section>
+                    <p> Stop processing commands for the given time period.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>time</td><td> time &times; .5s</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_displayOn()">void GU7000_displayOn();</h4>
+                <section>
+                    <p> Turn the display on. The screen may fade on.
+                </section>
+                <h4 id="GU7000_displayOff()">void GU7000_displayOff();</h4>
+                <section>
+                    <p> Turn the display off. The screen may fade off. <p>Turning the display off is saves more power than simply turning all dots off or setting the brightness to 0% with <a href="#GU7000_setScreenBrightness(unsigned-level)">GU7000_setScreenBrightness(unsigned level)</a>.
+                </section>
+                <h4 id="GU7000_screenSaver(ScreenSaver-mode)">void GU7000_screenSaver(ScreenSaver mode);</h4>
+                <section>
+                    <p> Set screen saver. <p>Screen savers are disabled if a command is received.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>mode</td><td> screen saver mode; See <a href="#ScreenSaver">ScreenSaver</a></td></tr>
+                    </table>
+                </section>
+        </section>
+        <h3>Fonts</h3>
+        <section>
+                <h4 id="GU7000_setFontStyle(bool-proportional,-bool-evenSpacing)">void GU7000_setFontStyle(bool proportional, bool evenSpacing);</h4>
+                <section>
+                    <p> Set the font style.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>proportional</td><td> true uses a proportional font false uses a fixed-width font</td></tr>
+                        <tr><td>evenSpacing</td><td> true inserts an extra dot on the right</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_setFontSize(uint8_t-x,-uint8_t-y,-bool-tall)">void GU7000_setFontSize(uint8_t x, uint8_t y, bool tall);</h4>
+                <section>
+                    <p> Set the magnification of the font. <p>Characters already on the screen are not affected.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> width magnification: 1 &le; x &le; 4</td></tr>
+                        <tr><td>y</td><td> height magnification: 1 &le; y &le; 4</td></tr>
+                        <tr><td>tall</td><td> uses the 8&times;16 font; this is required to enable multibyte character sets; See <a href="#GU7000_useMultibyteChars(bool-enable)">GU7000_useMultibyteChars(bool enable)</a></td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_useCustomChars(bool-enable)">void GU7000_useCustomChars(bool enable);</h4>
+                <section>
+                    <p> Enables or disables the use of custom characters. <p>Custom characters are not deleted if this is called with false; they may be used again when custom characters are re-enabled.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>enable</td><td> true enables custom characters; false disables them</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_defineCustomChar(uint8_t-code,-FontFormat-format,-const-uint8_t-*data)">void GU7000_defineCustomChar(uint8_t code, FontFormat format, const uint8_t *data);</h4>
+                <section>
+                    <p> <aside>Custom characters must be enabled with <a href="#GU7000_useCustomChars(bool-enable)">GU7000_useCustomChars(bool enable)</a> to see changes.</aside> Redefine the appearance of the given character code. Redefining a character does not change the appearance of characters already on screen. Custom characters may be redefined multiple times without deleting them. <p>Only 16 characters may be defined per format. <P>Custom characters are destroyed when the module is reset or the initialize command is used. Delete characters with <a href="#GU7000_deleteCustomChar(uint8_t-code,-FontFormat-format)">GU7000_deleteCustomChar(uint8_t code, FontFormat format)</a>.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>code</td><td> character code <br>0x20 &le; code &le; 0xff (except 16&times;16 and 32&times;32) <br>0xec40 &le; code &le; 0xec4f for 16&times;16 and 32&times;32 Japanese <br>0xfea1 &le; code &le; 0xfeb0 for 16&times;16 and 32&times;32 except Japanese</td></tr>
+                        <tr><td>format</td><td> size and format of data; see <a href="#FontFormat">FontFormat</a></td></tr>
+                        <tr><td>data</td><td> display data; see the module specification for format</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_deleteCustomChar(uint8_t-code,-FontFormat-format)">void GU7000_deleteCustomChar(uint8_t code, FontFormat format);</h4>
+                <section>
+                    <p> Delete a custom character. <p>The command is ignored if a character was not defined.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>code</td><td> character code <br>0x20 &le; code &le; 0xff (except 16&times;16 and 32&times;32) <br>0xec40 &le; code &le; 0xec4f for 16&times;16 and 32&times;32 Japanese <br>0xfea1 &le; code &le; 0xfeb0 for 16&times;16 and 32&times;32 except Japanese</td></tr>
+                        <tr><td>format</td><td> size and format of data; see <a href="#FontFormat">FontFormat</a></td></tr>
+                    </table>
+                </section>
+        </section>
+        <h3>Encoding</h3>
+        <section>
+                <h4 id="GU7000_useMultibyteChars(bool-enable)">void GU7000_useMultibyteChars(bool enable);</h4>
+                <section>
+                    <p> <aside>Multi-byte characters may only be printed when the 8&times;16 font is selected. 12&times;16 may be used for Japanese.</aside> Enable or disable the use of multibyte character sets. <p>Use <a href="#GU7000_setMultibyteCharset(uint8_t-code)">GU7000_setMultibyteCharset(uint8_t code)</a> to select the character set. <p>Multibyte charactersets are only available on GU-79** modules.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>enable</td><td> true enables multibyte character sets; false disables them</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_setMultibyteCharset(uint8_t-code)">void GU7000_setMultibyteCharset(uint8_t code);</h4>
+                <section>
+                    <p> <aside>Multi-byte characters may only be printed when the 8&times;16 font is selected. 12&times;16 may be used for Japanese.</aside> Set the multibyte character set. <p>Use <a href="#GU7000_useMultibyteChars(bool-enable)">GU7000_useMultibyteChars(bool enable)</a> to enable multicharacter sets. <p>Multibyte charactersets are only available on GU-79** modules.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>code</td><td> number code for the characterset; see <a href="#MultibyteCharset">MultibyteCharset</a></td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_setAsciiVariant(AsciiVariant-code)">void GU7000_setAsciiVariant(AsciiVariant code);</h4>
+                <section>
+                    <p> Select the national ASCII variant. <p>The appearance of these characters changes: <table> 	<tr><td>0x23</td> <td>0x24</td> <td>0x40</td> <td>0x5b</td> <td>0x5c</td> <td>0x5d</td> <td>0x5e</td> <td>0x60</td> <td>0x7c</td> <td>0x7d</td> <td>0x7e</td></tr> 	<tr><td>'#'</td> <td>'$'</td> <td>'@'</td> <td>'['</td> <td>'\'</td> <td>']'</td> <td>'^'</td> <td>'`'</td> <td>'{'</td> <td>'|'</td> <td>'}'</td></tr> </table> <p>Characters already on the screen are not affected.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>code</td><td> ASCII variant code; see <a href="#AsciiVariant">AsciiVariant</a></td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_setCharset(Charset-code)">void GU7000_setCharset(Charset code);</h4>
+                <section>
+                    <p> Select the character set (code page). <p>The appearance of characters 0x80 - 0xff changes according to the table for the selected character set. <p>Characters already on the screen are not affected. <p>This only affects 8-bit character sets. Use <a href="#GU7000_setMultibyteCharset(uint8_t-code)">GU7000_setMultibyteCharset(uint8_t code)</a> to change the multibyte character set.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>code</td><td> Character set code; see <a href="#Charset">Charset</a></td></tr>
+                    </table>
+                </section>
+        </section>
+        <h3>Screen Effects</h3>
+        <section>
+                <h4 id="GU7000_invertOn()">void GU7000_invertOn();</h4>
+                <section>
+                    <p> Turn inversion on. Dots that would have been been lit will be drawn unlit and vice versa. <p>Text and images already on screen are not affected.
+                </section>
+                <h4 id="GU7000_invertOff()">void GU7000_invertOff();</h4>
+                <section>
+                    <p> Turns inversion off.  <p>Text and images already on screen are not affected.
+                </section>
+                <h4 id="GU7000_setCompositionMode(CompositionMode-mode)">void GU7000_setCompositionMode(CompositionMode mode);</h4>
+                <section>
+                    <p> Determine the way that new images and text are combined with the contents that are already on the screen.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>mode</td><td> composition mode; see <a href="#CompositionMode">CompositionMode</a></td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_setScrollMode(ScrollMode-mode)">void GU7000_setScrollMode(ScrollMode mode);</h4>
+                <section>
+                    <p> <aside>No commands are processed while the module is scrolling.</aside> Select the behavior when text reaches the end of the screen.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>mode</td><td> scroll mode; see <a href="#ScrollMode">ScrollMode</a></td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_setHorizScrollSpeed(uint8_t-speed)">void GU7000_setHorizScrollSpeed(uint8_t speed);</h4>
+                <section>
+                    <p> <aside>No commands are processed while the module is scrolling.</aside> <aside>Timing differs per module: 13 &le; <i>T</i> &le; 15</aside> Set the delay between scrolling animation steps.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>speed</td><td> 0 prevents any delay between steps <br>1 <i>T</i> ms / 2 dots <br>(n - 1) &times; <i>T</i> ms / dot</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_scrollScreen(unsigned-x,-unsigned-y,-unsigned-count,-uint8_t-speed)">void GU7000_scrollScreen(unsigned x, unsigned y, unsigned count, uint8_t speed);</h4>
+                <section>
+                    <p> <aside>No commands are processed while the module is scrolling.</aside> Scroll the contents of the screen by (x, y) leftwards/upwards. <p>This command only moves the viewing area. The visible screen area is moved left/up and the right / bottom edge now appears in the hidden memory area. <p>The cursor remains in place. It does not scroll with the cursor. <p>Scrolling can be used for page flipping if the module has enough display memory for two full screens. Set the cursor into the hidden memory area and draw he next frame. When rendering is complete, scroll the width of a screen to exchange the hidden memory area with the previous visible memory area. The cursor will remain in the hidden memory area. <aside>Timing differs per module: 13 &le; <i>T</i> &le; 15</aside>
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> number of dots to move left</td></tr>
+                        <tr><td>y</td><td> number of dots to move up rounded down to the next 8 dots</td></tr>
+                        <tr><td>count</td><td> number of steps to break animation into</td></tr>
+                        <tr><td>speed</td><td> delay between each step; speed &times; <i>T</i></td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_blinkScreen()">void GU7000_blinkScreen();</h4>
+                <section>
+                    <p> Stop the screen from blinking. Blink the screen with <a href="#GU7000_blinkScreen(bool-enable,-bool-reverse,-uint8_t-on,-uint8_t-off,-uint8_t-times)">GU7000_blinkScreen(bool enable, bool reverse, uint8_t on, uint8_t off, uint8_t times)</a>.
+                </section>
+                <h4 id="GU7000_blinkScreen(bool-enable,-bool-reverse,-uint8_t-on,-uint8_t-off,-uint8_t-times)">void GU7000_blinkScreen(bool enable, bool reverse, uint8_t on, uint8_t off, uint8_t times);</h4>
+                <section>
+                    <p> Enable or disable screen blinking.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>enable</td><td> true enables screen blinking; false disables it</td></tr>
+                        <tr><td>reverse</td><td> true reverses the screen on 'off' cycles; false clears the screen</td></tr>
+                        <tr><td>on</td><td> <aside>Timing differs per module: 13 &le; <i>T</i> &le; 15</aside> time to display the normal screen image; on &times; <i>T</i></td></tr>
+                        <tr><td>off</td><td> time to display the inverted or blank screen image; on &times; <i>T</i></td></tr>
+                        <tr><td>times</td><td> number of times to blink the screen off; 0 blinks until vfd.GU7000_blinkScreen(false, false, 1, 1, 1);</td></tr>
+                    </table>
+                </section>
+        </section>
+        <h3>Drawing</h3>
+        <section>
+                <h4 id="GU7000_drawImage(unsigned-width,-uint8_t-height,-const-uint8_t-*data)">void GU7000_drawImage(unsigned width, uint8_t height, const uint8_t *data);</h4>
+                <section>
+                    <p> <aside>If height is larger than the screen, then the call will be ignored.</aside> Draw image at the cursor from host RAM. <p>The cursor is not moved.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>width</td><td> width of image; may be less than the width of the image in memory</td></tr>
+                        <tr><td>height</td><td> height of image; must be the height of the image in memory rounded down to the next 8 dots</td></tr>
+                        <tr><td>data</td><td> image data; see <a href="#Image-Format">Image Format</a></td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_drawImage_p(unsigned-width,-uint8_t-height,-const-uint8_t-*data)">void GU7000_drawImage_p(unsigned width, uint8_t height, const uint8_t *data);</h4>
+                <section>
+                    <p> <aside>If height is larger than the screen, then the call will be ignored.</aside> Draw image at the cursor from host ROM. <p>The cursor is not moved.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>width</td><td> width of image; may be less than the width of the image in memory</td></tr>
+                        <tr><td>height</td><td> height of image; must be the height of the image in memory rounded down to the next 8 dots</td></tr>
+                        <tr><td>data</td><td> image data; see <a href="#Image-Format">Image Format</a></td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_drawFROMImage(unsigned-long-address,-uint8_t-srcHeight,-unsigned-width,-uint8_t-height)">void GU7000_drawFROMImage(unsigned long address, uint8_t srcHeight, unsigned width, uint8_t height);</h4>
+                <section>
+                    <p> <aside>If height or srcHeight is larger than the screen, then the call will be ignored.</aside> Draw image at the cursor from the module's Flash image memory area (FROM). <p>The source image starts from (offsetx, offsety) with the origin at the byte specified by address. <p>Only GU-79** modules have the Flash ROM image memory area.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>address</td><td> address in the memory area</td></tr>
+                        <tr><td>srcHeight</td><td> height of image in memory memory rounded down to the next 8 dots</td></tr>
+                        <tr><td>width</td><td> width of image; may be less than the width of the image in memory</td></tr>
+                        <tr><td>height</td><td> height of image; may be less than the height of the image in memory</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_drawImage(unsigned-x,-uint8_t-y,-ImageMemoryArea-area,-unsigned-long-address,-uint8_t-srcHeight,-unsigned-width,-uint8_t-height,-unsigned-offsetx,-unsigned-offsety)">void GU7000_drawImage(unsigned x, uint8_t y, ImageMemoryArea area, unsigned long address, uint8_t srcHeight, unsigned width, uint8_t height, unsigned offsetx, unsigned offsety);</h4>
+                <section>
+                    <p> <aside>If height or srcHeight is larger than the screen, then the call will be ignored.</aside> <aside>This command is only available on Generation B.</aside> Draw image at (x, y) from the module's image memory areas. <p>The source image starts from (offsetx, offsety) with the origin at the byte specified by address.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> x coordinate of top-left corner</td></tr>
+                        <tr><td>y</td><td> y coordinate of top-left corner</td></tr>
+                        <tr><td>area</td><td> area in which the bitmap is stored; see <a href="#ImageMemoryArea">ImageMemoryArea</a></td></tr>
+                        <tr><td>address</td><td> address in the memory area</td></tr>
+                        <tr><td>srcHeight</td><td> height of image in memory memory rounded down to the next 8 dots</td></tr>
+                        <tr><td>width</td><td> width of image; may be less than the width of the image in memory</td></tr>
+                        <tr><td>height</td><td> height of image; may be less than the height of the image in memory</td></tr>
+                        <tr><td>offsetx</td><td> x coordiante offset from source address</td></tr>
+                        <tr><td>offsety</td><td> y coordiante offset from source address</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_drawImage(unsigned-x,-uint8_t-y,-ImageMemoryArea-area,-unsigned-long-address,-unsigned-width,-uint8_t-height)">void GU7000_drawImage(unsigned x, uint8_t y, ImageMemoryArea area, unsigned long address, unsigned width, uint8_t height);</h4>
+                <section>
+                    <p> <aside>If height is larger than the screen, then the call will be ignored.</aside> <aside>Unlike other functions, this rounds height up since images with heights not divisible by 8 may be drawn.</aside> <aside>This command is only available on Generation B.</aside> Draw image at (x, y) from the module's image memory areas. <p>The source image starts from the byte specified by address.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x</td><td> x coordinate of top-left corner</td></tr>
+                        <tr><td>y</td><td> y coordinate of top-left corner</td></tr>
+                        <tr><td>area</td><td> area in which the bitmap is stored; see <a href="#ImageMemoryArea">ImageMemoryArea</a></td></tr>
+                        <tr><td>address</td><td> address in the memory area</td></tr>
+                        <tr><td>width</td><td> width of image; may be less than the width of the image in memory</td></tr>
+                        <tr><td>height</td><td> height of image rounded <b>up</b> to the next 8 dots</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_drawImage_p(unsigned-x,-uint8_t-y,-unsigned-width,-uint8_t-height,-const-uint8_t-*data)">void GU7000_drawImage_p(unsigned x, uint8_t y, unsigned width, uint8_t height, const uint8_t *data);</h4>
+                <section>
+                    <p> <aside>If height is larger than the screen, then the call will be ignored.</aside> <aside>This command is only available on Generation B.</aside> Draw image at (x, y) from host RAM.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>width</td><td> width of image; may be less than the width of the image in memory</td></tr>
+                        <tr><td>height</td><td> height of image; must be the height of the image in memory rounded down to the next 8 dots</td></tr>
+                        <tr><td>data</td><td> image data; see <a href="#Image-Format">Image Format</a></td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_drawImage(unsigned-x,-uint8_t-y,-unsigned-width,-uint8_t-height,-const-uint8_t-*data)">void GU7000_drawImage(unsigned x, uint8_t y, unsigned width, uint8_t height, const uint8_t *data);</h4>
+                <section>
+                    <p> <aside>If height is larger than the screen, then the call will be ignored.</aside> <aside>This command is only available on Generation B.</aside> Draw image at (x, y) from host ROM.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>width</td><td> width of image; may be less than the width of the image in memory</td></tr>
+                        <tr><td>height</td><td> height of image; must be the height of the image in memory rounded down to the next 8 dots</td></tr>
+                        <tr><td>data</td><td> image data; see <a href="#Image-Format">Image Format</a></td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_fillRect(unsigned-x0,-unsigned-y0,-unsigned-x1,-unsigned-y1,-bool-on)">void GU7000_fillRect(unsigned x0, unsigned y0, unsigned x1, unsigned y1, bool on);</h4>
+                <section>
+                    <p> Draw a filled rectangle from (x0,y0)-(x1,y1).
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>x0</td><td> x coordinate of the top-left corner</td></tr>
+                        <tr><td>y0</td><td> y coordinate of the top-left corner</td></tr>
+                        <tr><td>x1</td><td> x coordinate of the bottom-right corner</td></tr>
+                        <tr><td>y1</td><td> y coordinate of the bottom-right corner</td></tr>
+                        <tr><td>on</td><td> true lights the rectangle; <br> false turns the dots of the rectangle off</td></tr>
+                    </table>
+                </section>
+        </section>
+        <h3>Window and Screen</h3>
+        <section>
+                <h4 id="GU7000_selectWindow(uint8_t-window)">void GU7000_selectWindow(uint8_t window);</h4>
+                <section>
+                    <p> Select the base window or one of the user-defined windows.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>window</td><td> 0 selects the base window 1 &le; window &le; user-defined window</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_defineWindow(uint8_t-window,-unsigned-x,-unsigned-y,-unsigned-width,-unsigned-height)">void GU7000_defineWindow(uint8_t window, unsigned x, unsigned y, unsigned width, unsigned height);</h4>
+                <section>
+                    <p> Define or redefine a window from (x,y) to (x+width, y+height).
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>window</td><td> 1 &le; window &le; user-defined window</td></tr>
+                        <tr><td>x</td><td> x coordinate of upper-left corner</td></tr>
+                        <tr><td>y</td><td> x coordinate of upper-left corner</td></tr>
+                        <tr><td>width</td><td> width of the window; may not be past the edge of the visible screen</td></tr>
+                        <tr><td>height</td><td> height of the window; may not be past the edge of the visisble screen</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_deleteWindow(uint8_t-window)">void GU7000_deleteWindow(uint8_t window);</h4>
+                <section>
+                    <p> Delete a user-defined window. <p>The command is ignored if the user-defined window is not defined.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>window</td><td> 1 &le; window &le; user-defined window</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_joinScreens()">void GU7000_joinScreens();</h4>
+                <section>
+                    <p> Treat the display memory as one screen. <p>Text scrolls and wraps when the cursor reaches the right end of the hidden memory area.
+                </section>
+                <h4 id="GU7000_separateScreens()">void GU7000_separateScreens();</h4>
+                <section>
+                    <p> Treat the display memory as two separate screens: visible screen area and hidden memory area.
+                </section>
+        </section>
+        <h3>LED Backlight Control</h3>
+        <section>
+                <h4 id="GU7000_setBacklightColor(uint8_t-r,-uint8_t-g,-uint8_t-b)">void GU7000_setBacklightColor(uint8_t r, uint8_t g, uint8_t b);</h4>
+                <section>
+                    <p> Set the color of the LED backlight.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>r</td><td> red component (16 shades); 0 &le; r &le; 255</td></tr>
+                        <tr><td>g</td><td> green component (16 shades); 0 &le; g &le; 255</td></tr>
+                        <tr><td>b</td><td> blue component (16 shades); 0 &le; b &le; 255</td></tr>
+                    </table>
+                </section>
+                <h4 id="GU7000_setBacklightColor(unsigned-rgb)">void GU7000_setBacklightColor(unsigned rgb);</h4>
+                <section>
+                    <p> Set the color of the LED backlight.
+                    <h5>Parameters</h5>
+                    <table>
+                        <tr><td>rgb</td><td> R8G8B8 color; each component has 16 shades</td></tr>
+                    </table>
+                </section>
+        </section>
+<!-- END METHODS -->
+
+    </section>
+</body>
+</html>
