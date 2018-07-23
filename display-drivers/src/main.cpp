@@ -44,11 +44,20 @@ gu7000_image load_image(string filename) {
                 this_byte[current_bit % 8] = 0;
             }
             current_bit++;
+
             if(current_bit % 8 == 0) {
                 image.data.push_back((uint8_t)this_byte.to_ulong());
-            }   
+            }
         }
     }
+
+    int half = image.data.size() / 2;
+
+    for(int i = 0; i < half; i++) {
+        image.data.push_back(image.data.front());
+        image.data.erase(image.data.begin());
+    }
+
     cout << "success!" << endl;
     return image;
 }
