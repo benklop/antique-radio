@@ -70,7 +70,7 @@ int main() {
         return 1;
     }
 
-    GU7000_setScreenBrightness(reader.GetInteger("screen", "brightness", 75));
+    vfd.GU7000_setScreenBrightness(reader.GetInteger("screen", "brightness", 75));
 
     gu7000_image image = load_image(reader.Get("screen", "splash", ""));
     vfd.GU7000_drawImage(image.width, image.height, image.data);
