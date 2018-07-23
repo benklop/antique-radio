@@ -33,12 +33,12 @@ gu7000_image load_image(string filename) {
     image.width = src.width();
     image.height = src.height();
 
-    int num_bytes = src.width() * (src.height()/8);
+    num_bytes = src.width() * (src.height()/8);
 
     for (int i=0; i < src.width(); i++) {
         bitset<8> this_byte(0);
         for(int j=0; j < src.height() / 8; j++) {
-            for(int k=7; k >= 0; k--) {
+            for(int k=0; k < 8; k++) {
                 if(*src.data(i, j * 8 + k)) {
                     this_byte[k] = 1;
                 }
@@ -46,7 +46,9 @@ gu7000_image load_image(string filename) {
                     this_byte[k] = 0;
                 }
             }
-            image.data.push_back((uint8_t)this_byte.to_ulong());
+            uint8_t b = (uint8_t)this_byte.to_ulong();
+            b = ((b * 0x0802LU & 0x22110LU) | (b * 0x8020LU & 0x88440LU)) * 0x10101LU >> 16;
+            image.data.push_back(b);
         }
     }
     cout << "success!" << endl;
