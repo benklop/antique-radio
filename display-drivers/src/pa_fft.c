@@ -181,7 +181,6 @@ void *pa_fft_thread(void *arg) {
     struct pa_fft *t = (struct pa_fft *)arg;
     float weights[t->buffer_samples];
 
-    graph_init(t);
     avg_buf_init(t);
     weights_init(weights, t->fft_memb, t->win_type);
 
@@ -223,10 +222,10 @@ void *pa_fft_thread(void *arg) {
             mag_max = mag > mag_max ? mag : mag_max;
         }
 
-        if ((float)lag/1000000 < 1.0f)
+        //if ((float)lag/1000000 < 1.0f)
             //if high lag change color?
             //glColor3f(255.0,255.0,255.0);
-        else
+        //else
             //glColor3f(255.0,0.0,0.0);
         for (int i = t->start_low; i < t->fft_memb; i++) {
             double freq;
