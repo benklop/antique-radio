@@ -94,7 +94,8 @@ void deinit_fft(struct pa_fft *pa_fft) {
     free(pa_fft);
 }
 
-  {
+static inline void avg_buf_init(struct pa_fft *pa_fft)
+{
     pa_fft->frame_avg_mag = malloc(pa_fft->fft_memb*sizeof(float *));
     for (int i = 0; i < pa_fft->fft_memb; i++)
         pa_fft->frame_avg_mag[i] = calloc(pa_fft->frame_avg, sizeof(float));
