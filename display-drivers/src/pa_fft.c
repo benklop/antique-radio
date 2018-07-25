@@ -70,6 +70,9 @@ struct pa_fft {
     unsigned int fft_memb;
     double fft_fund_freq;
     fftw_plan plan;
+
+    /* size */
+    int width, height;
 };
 
 void deinit_fft(struct pa_fft *pa_fft) {
