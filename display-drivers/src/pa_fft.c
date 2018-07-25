@@ -221,9 +221,10 @@ void *pa_fft_thread(void *arg) {
         }
 
         if ((float)lag/1000000 < 1.0f)
-            glColor3f(255.0,255.0,255.0);
+            //if high lag change color?
+            //glColor3f(255.0,255.0,255.0);
         else
-            glColor3f(255.0,0.0,0.0);
+            //glColor3f(255.0,0.0,0.0);
         for (int i = t->start_low; i < t->fft_memb; i++) {
             double freq;
             fftw_complex num = t->output[i];
