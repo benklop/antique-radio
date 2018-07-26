@@ -6,7 +6,7 @@
 
 //included libraries
 #include "INIReader.h"
-#include "../cimg/CImg.h"
+#include "./cimg/CImg.h"
 
 
 #include <iostream>
