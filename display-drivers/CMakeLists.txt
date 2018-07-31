@@ -7,6 +7,9 @@ set (VERSION_MINOR 1)
  
 set (CMAKE_CXX_STANDARD 14)
 
+# do not use an X11 display
+set (cimg_display 0)
+
 # configure a header file to pass some of the CMake settings
 # to the source code
 configure_file (
@@ -24,6 +27,7 @@ include_directories(
 
 # build the gu7000 library so we can actually do things
 add_library(gu7000 STATIC
+
     "driver/config.h"
     "driver/interface.h"
     "driver/Noritake_VFD_GU7000.h"
@@ -35,5 +39,5 @@ add_library(gu7000 STATIC
     "driver/Noritake_VFD_GU7000.cpp"
     )
 
-add_executable(vfd-display src/main.cpp)
+add_executable(vfd-display src/vfd_writer.cpp src/main.cpp)
 target_link_libraries(vfd-display gu7000 pthread)

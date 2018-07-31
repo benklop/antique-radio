@@ -1,4 +1,6 @@
 // the configured options and settings
-#define cimg_display 0 //no display server
-#define VERSION_MAJOR @Tutorial_VERSION_MAJOR@
-#define VERSION_MINOR @Tutorial_VERSION_MINOR@
+
+#define VERSION_MAJOR @VERSION_MAJOR@
+#define VERSION_MINOR @VERSION_MINOR@
+
+#define cimg_display @cimg_display@ //no display server
