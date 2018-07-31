@@ -40,4 +40,4 @@ add_library(gu7000 STATIC
     )
 
 add_executable(vfd-display src/vfd_writer.cpp src/main.cpp)
-target_link_libraries(vfd-display gu7000 pthread)
+target_link_libraries(vfd-display gu7000 pthread wiringPi)
