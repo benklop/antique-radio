@@ -3,8 +3,6 @@
 #include <bitset>
 #include <iostream>
 
-#include <wiringPi.h>
-
 #include "Config.h"
 #include "./cimg/CImg.h"
 #include "../driver/config.h"
@@ -32,8 +30,6 @@ class VfdWriter {
     void draw_image(gu7000_image &img);
 
     void flip();
-
-    void hard_reset();
 
     private:
     Noritake_VFD_GU7000 vfd;

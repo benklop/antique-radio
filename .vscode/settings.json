@@ -4,5 +4,6 @@
         "iostream": "cpp",
         "bitset": "cpp",
         "ostream": "cpp"
-    }
+    },
+    "python.jediEnabled": false
 }
