@@ -12,5 +12,6 @@ int main() {
     VfdWriter vfd = VfdWriter();
     vfd.init(reader.GetInteger("screen", "brightness", 75));
     vfd.draw_image(image);
+    vfd.flip();
     return 0;
 }
