@@ -1,11 +1,16 @@
 #include "vfd_writer.h"
-
 VfdWriter::VfdWriter() {
     init();
 }
 
+void VfdWriter::hard_reset() {
+    wiringPiSetup();
+    pinMode(24, OUTPUT);
+    pinMode(24, INPUT);
+}
+
 void VfdWriter::init(int brightness) {
-    vfd.GU7000_reset();
+    hard_reset();
     vfd.GU7000_init();
     vfd.GU7000_setCursor(140, 0);
     vfd.GU7000_setScreenBrightness(brightness);
