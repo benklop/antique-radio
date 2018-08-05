@@ -1,0 +1,6 @@
+[submodule "python/usb_4_mic_array"]
+	path = python/usb_4_mic_array
+	url = https://github.com/respeaker/usb_4_mic_array.git
+[submodule "python/pixel_ring"]
+	path = python/pixel_ring
+	url = https://github.com/respeaker/pixel_ring.git
