@@ -6,7 +6,8 @@ VfdWriter::VfdWriter() {
 void VfdWriter::init(int brightness) {
     vfd.GU7000_reset();
     vfd.GU7000_init();
-    vfd.GU7000_setCursor(140, 0);
+    vfd.GU7000_home();
+
     vfd.GU7000_setScreenBrightness(brightness);
 }
 
@@ -44,12 +45,6 @@ gu7000_image VfdWriter::convert_image(CImg<bool> &src) {
     }
     image.data = converted.data();
     return image;
-}
-
-//flip the display to showing the other half of the buffer, and switch the cursor to drawing on the hidden half.
-void VfdWriter::flip() {
-    vfd.GU7000_scrollScreen(140,0,0,0);
-    vfd.GU7000_setCursor(140, 0);
 }
 
 void VfdWriter::draw_image(gu7000_image &img) {
