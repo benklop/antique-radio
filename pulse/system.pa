@@ -73,11 +73,15 @@ load-module module-filter-apply
 #load-module module-combine-sink sink_name=combined
 #set-default-sink combined
 
-load-module module-echo-cancel source_name=unecho_source sink_name=unecho_sink sink_master=alsa_output.platform-soc_sound.analog-stereo source_master=alsa_input.usb-SEEED_ReSpeaker_4_Mic_Array__UAC1.0_-00-ArrayUAC10.analog-mono
+#the respeaker has 6 channels:
+#Channel 0: processed audio for ASR 
+#Channel 1: mic1 raw data 
+#Channel 2: mic2 raw data 
+#Channel 3: mic3 raw data 
+#Channel 4: mic4 raw data 
+#Channel 5: merged playback
+load-module module-remap-source source_name=mic_array master=alsa_input.usb-SEEED_ReSpeaker_4_Mic_Array__UAC1.0_-00-ArrayUAC10.analog-6-channel-input master_channel_map=aux1,aux2,aux3,aux4 channel_map=aux0,aux1,aux2,aux3
+load-module module-echo-cancel source_name=echo_source sink_name=echo_sink sink_master=alsa_output.platform-soc_sound.analog-stereo source_master=mic_array aec_method=webrtc aec_args="beamforming=true mic_geometry=0.02285,0.02285,0,0.02285,-0.02285,0,-0.02285,-0.02285,0,-0.02285,0.02285,0"
 
-set-default-sink unecho_sink
-
-set-default-source unecho_source
-
-### Enable positioned event sounds
-load-module module-position-event-sounds
+set-default-sink echo_sink
+set-default-source echo_source
