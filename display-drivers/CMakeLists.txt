@@ -9,7 +9,6 @@ set (CMAKE_CXX_STANDARD 14)
 
 # do not use an X11 display
 set (cimg_display 0)
-set (cimg_use_png)
 
 # configure a header file to pass some of the CMake settings
 # to the source code
@@ -42,4 +41,4 @@ add_library(
     )
 
 add_executable(vfd-display src/vfd_writer.cpp src/main.cpp)
-target_link_libraries(vfd-display gu7000 png pthread)
+target_link_libraries(vfd-display gu7000 pthread)

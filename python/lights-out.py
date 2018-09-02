@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from pixel_ring import pixel_ring
+import pixel_ring/pixel_ring
 import wiringpi
 
 #configure wiringpi with GPIO numbering
