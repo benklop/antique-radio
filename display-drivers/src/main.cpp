@@ -19,7 +19,7 @@ int main(int argc, char** argv)
     if(argc > 1) {
         vector<gu7000_image> images;
         cout << "Loading files:" << endl;
-        for (int i = 0; i < argc; ++i) {
+        for (int i = 1; i < argc; ++i) {
             cout << argv[i] << "\n";
             images.push_back(VfdWriter::load_image(argv[i]));
         }
