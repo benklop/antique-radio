@@ -3,12 +3,23 @@ VfdWriter::VfdWriter() {
     init();
 }
 
+void VfdWriter::flip() {
+    if(page) {
+        vfd.GU7000_scrollScreen(0, 16, 1, 0);
+        vfd.GU7000_setCursor(0, 0);
+    }
+    else {
+        vfd.GU7000_scrollScreen(0, 16, 1, 0);
+        vfd.GU7000_setCursor(0, 16);
+    }
+    page = !page;
+}
+
 void VfdWriter::init(int brightness) {
     vfd.GU7000_reset();
     vfd.GU7000_init();
-    vfd.GU7000_home();
-
     vfd.GU7000_setScreenBrightness(brightness);
+    flip();
 }
 
 gu7000_image VfdWriter::load_image(string filename) {
@@ -49,4 +60,5 @@ gu7000_image VfdWriter::convert_image(CImg<bool> &src) {
 
 void VfdWriter::draw_image(gu7000_image &img) {
     vfd.GU7000_drawImage(img.width, img.height, img.data);
+    flip();
 }
