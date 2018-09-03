@@ -1,7 +1,5 @@
 #include "vfd_writer.h"
 #include "INIReader.h"
-
-// Name of program mainreturn.cpp
 #include <iostream>
 using namespace std;
  
@@ -26,7 +24,8 @@ int main(int argc, char** argv)
         
         for (int i = 0; i < images.size(); i++) {
             vfd.draw_image(images.at(i));
-            nanosleep((const struct timespec[]){{0, 16666667L}}, null);
+            cout << "drew image " << i << endl;
+            nanosleep((const struct timespec[]){{0, 16666667L}}, NULL);
         }
     }
     else {

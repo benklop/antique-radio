@@ -23,10 +23,8 @@ void VfdWriter::init(int brightness) {
 }
 
 gu7000_image VfdWriter::load_image(string filename) {
-    cout << "loading image " << filename << " ... ";
     CImg<bool> src(filename.c_str());
     gu7000_image image = convert_image(src);
-    cout << "success!" << endl;
     return image;
 }
 
