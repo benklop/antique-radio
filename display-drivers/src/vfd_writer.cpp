@@ -58,5 +58,5 @@ gu7000_image VfdWriter::convert_image(CImg<bool> &src) {
 
 void VfdWriter::draw_image(gu7000_image &img) {
     vfd.GU7000_drawImage(img.width, img.height, img.data);
-    flip();
+    //flip();
 }
