@@ -13,13 +13,13 @@ static volatile int vfd;
 static volatile std::queue<uint8_t> buffer;
 
 void ISRWritePort() {
-	if(buffer.size()) //if there is data to write
+	if(buffer.size() >= 1) //if there is data to write
   	    write(vfd, buffer.pop(), 1); //pop it off and write it
 }
 
 void writePort(uint8_t data) {
 	buffer.push(data);
-	if(digitalRead(16) == LOW && buffer.size()) //if the on-display buffer is empty but we have data in our buffer still
+	if(digitalRead(16) == LOW && buffer.size() >= 1) //if the on-display buffer is empty but we have data in our buffer still
 	    ISRWritePort(); //trigger the ISR since there won't be a falling edge
 }
 
