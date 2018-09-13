@@ -14,7 +14,7 @@ static volatile std::queue<uint8_t> buffer;
 
 void ISRWritePort() {
 	if(buffer.size() >= 1) //if there is data to write
-  	    write(vfd, buffer.pop(), 1); //pop it off and write it
+  	   uint8_t data = buffer.pop(); write(vfd, data, 1); //pop it off and write it
 }
 
 void writePort(uint8_t data) {
