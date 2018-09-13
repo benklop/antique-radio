@@ -13,8 +13,10 @@ static volatile int vfd;
 static volatile std::queue<uint8_t> buffer;
 
 void ISRWritePort() {
-	if(buffer.size() >= 1) //if there is data to write
-  	   uint8_t data = buffer.pop(); write(vfd, data, 1); //pop it off and write it
+	if(buffer.size() >= 1) { //if there is data to write
+  	   write(vfd, buffer.front(), 1); //write it
+	   buffer.pop();//pop it off and write it
+	}
 }
 
 void writePort(uint8_t data) {
