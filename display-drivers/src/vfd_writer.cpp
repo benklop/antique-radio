@@ -19,7 +19,7 @@ void VfdWriter::init(int brightness) {
     vfd.GU7000_reset();
     vfd.GU7000_init();
     vfd.GU7000_setScreenBrightness(brightness);
-    flip();
+    //flip();
 }
 
 gu7000_image VfdWriter::load_image(string filename) {

@@ -182,5 +182,5 @@
     #define D7_PIN                  7
 #elif NORITAKE_VFD_INTERFACE==2
 	#define NORITAKE_VFD_FILE		"/dev/ttyAMA0"
-    #define NORITAKE_VFD_BAUD       38400
+    #define NORITAKE_VFD_BAUD       115200
 #endif

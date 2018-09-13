@@ -25,7 +25,6 @@ int main(int argc, char** argv)
         for (int i = 0; i < images.size(); i++) {
             vfd.draw_image(images.at(i));
             cout << "drew image " << i << endl;
-            nanosleep((const struct timespec[]){{0, 16666667L}}, NULL);
         }
     }
     else {
