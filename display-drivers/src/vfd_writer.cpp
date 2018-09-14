@@ -16,12 +16,11 @@ void VfdWriter::flip() {
 }
 
 void VfdWriter::init(int brightness) {
-    vfd.GU7000_reset();
-    nanosleep((const struct timespec[]){{0, 120000000L}}, NULL);
-
     vfd.GU7000_init();
+    nanosleep((const struct timespec[]){{0, 120000000L}}, NULL);
     vfd.GU7000_setScreenBrightness(brightness);
-    //flip();
+    vfd.GU7000_clearScreen();
+    flip();
 }
 
 gu7000_image VfdWriter::load_image(string filename) {
@@ -60,5 +59,5 @@ gu7000_image VfdWriter::convert_image(CImg<bool> &src) {
 
 void VfdWriter::draw_image(gu7000_image &img) {
     vfd.GU7000_drawImage(img.width, img.height, img.data);
-    //flip();
+    flip();
 }
