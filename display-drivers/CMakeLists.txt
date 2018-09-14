@@ -41,4 +41,4 @@ add_library(
     )
 
 add_executable(vfd-display src/vfd_writer.cpp src/main.cpp)
-target_link_libraries(vfd-display gu7000 pthread wiringpi)
+target_link_libraries(vfd-display gu7000 pthread wiringPi)
