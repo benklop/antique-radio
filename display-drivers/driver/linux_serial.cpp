@@ -20,7 +20,7 @@ void ISRWritePort() {
 }
 
 void writePort(uint8_t data) {
-	buffer.push(&data);
+	buffer.push(data);
 	if(digitalRead(16) == LOW && buffer.size() >= 1) //if the on-display buffer is empty but we have data in our buffer still
 	    ISRWritePort(); //trigger the ISR since there won't be a falling edge
 }
