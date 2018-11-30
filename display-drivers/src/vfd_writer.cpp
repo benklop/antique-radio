@@ -1,14 +1,15 @@
+// Copyright 2018 Ben Klopfenstein
+
 #include "vfd_writer.h"
 VfdWriter::VfdWriter() {
     init();
 }
 
 void VfdWriter::flip() {
-    if(page) {
+    if (page) {
         vfd.GU7000_scrollScreen(0, 16, 1, 0);
         vfd.GU7000_setCursor(0, 0);
-    }
-    else {
+    } else {
         vfd.GU7000_scrollScreen(0, 16, 1, 0);
         vfd.GU7000_setCursor(0, 16);
     }
@@ -24,12 +25,13 @@ void VfdWriter::init(int brightness) {
 }
 
 gu7000_image VfdWriter::load_image(string filename) {
-    CImg<bool> src(filename.c_str());
+    cout << "loading image " << filename << " ... ";
+    cimg::CImg<bool> src(filename.c_str());
     gu7000_image image = convert_image(src);
     return image;
 }
 
-gu7000_image VfdWriter::convert_image(CImg<bool> &src) {
+gu7000_image VfdWriter::convert_image(const cimg::CImg<bool> &src) {
     gu7000_image image;
     image.width = src.width();
     image.height = src.height();
@@ -37,14 +39,13 @@ gu7000_image VfdWriter::convert_image(CImg<bool> &src) {
 
     int num_bytes = src.width() * (src.height()/8);
 
-    for (int i=0; i < src.width(); i++) {
+    for (int i = 0; i < src.width(); i++) {
         bitset<8> this_byte(0);
-        for(int j=0; j < src.height() / 8; j++) {
-            for(int k=0; k < 8; k++) {
-                if(*src.data(i, j * 8 + k)) {
+        for (int j = 0; j < src.height() / 8; j++) {
+            for (int k = 0; k < 8; k++) {
+                if (*src.data(i, j * 8 + k)) {
                     this_byte[k] = 0;
-                }
-                else {
+                } else {
                     this_byte[k] = 1;
                 }
             }
@@ -57,7 +58,7 @@ gu7000_image VfdWriter::convert_image(CImg<bool> &src) {
     return image;
 }
 
-void VfdWriter::draw_image(gu7000_image &img) {
+void VfdWriter::draw_image(const gu7000_image &img) {
     vfd.GU7000_drawImage(img.width, img.height, img.data);
     flip();
 }
