@@ -16,8 +16,10 @@ void VfdWriter::flip() {
 }
 
 void VfdWriter::init(int brightness) {
+    vfd.GU7000_reset();
+    nanosleep((const struct timespec[]){{0, 500000000L}}, NULL);
     vfd.GU7000_init();
-    nanosleep((const struct timespec[]){{0, 120000000L}}, NULL);
+    nanosleep((const struct timespec[]){{0, 500000000L}}, NULL);
     vfd.GU7000_setScreenBrightness(brightness);
     vfd.GU7000_clearScreen();
     flip();
