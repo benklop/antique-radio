@@ -1,11 +1,13 @@
+// Copyright 2018 Ben Klopfenstein
+
 #include "vfd_writer.h"
 #include "INIReader.h"
 #include <iostream>
 using namespace std;
- 
+
 int main(int argc, char** argv)
 {
-    INIReader reader("config.ini");
+    INIReader reader("/etc/antique-radio/config.ini");
     if (reader.ParseError() < 0) {
         cout << "Can't load 'config.ini'\n";
         return 1;
@@ -21,7 +23,7 @@ int main(int argc, char** argv)
             cout << argv[i] << "\n";
             images.push_back(VfdWriter::load_image(argv[i]));
         }
-        
+
         for (int i = 0; i < images.size(); i++) {
             vfd.draw_image(images.at(i));
             cout << "drew image " << i << endl;
