@@ -4,7 +4,7 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
-
+#include <iostream>
 #include <queue>
 #include <wiringPi.h>
 
@@ -16,16 +16,24 @@ void ISRWritePort() {
   if (buffer.size() >= 1) {          // if there is data to write
     write(vfd, &buffer.front(), 1);  // write it
     buffer.pop();                    // pop it off and write it
+    std::cout << "ISR wrote data" << std::endl;
   }
 }
 
 void writePort(uint8_t data) {
   buffer.push(data);
   if (digitalRead(16) == LOW &&
-      buffer.size() >= 1)  // if the on-display buffer is empty but we have data
-                           // in our buffer still
-    ISRWritePort();        // trigger the ISR since there won't be a falling edge
+      buffer.size() >= 1) {  // if the on-display buffer is empty but we have data in our buffer
+    write(vfd, &buffer.front(), 1);
+    buffer.pop();
+    std::cout << "buffer was empty" << std::endl;
+  }
 }
+
+bool bufferEmpty() {
+	return buffer.size() < 1;
+}
+		
 
 void initPort() {
 #if NORITAKE_VFD_BAUD == 9600
