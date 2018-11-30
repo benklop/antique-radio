@@ -24,6 +24,7 @@ void VfdWriter::init(int brightness) {
     vfd.GU7000_setScreenBrightness(brightness);
     vfd.GU7000_clearScreen();
     flip();
+    vfd.buffer_wait();
 }
 
 gu7000_image VfdWriter::load_image(string filename) {

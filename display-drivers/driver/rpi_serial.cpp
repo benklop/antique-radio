@@ -15,7 +15,7 @@ static std::queue<uint8_t> buffer;
 void ISRWritePort() {
   if (buffer.size() >= 1) {          // if there is data to write
     write(vfd, &buffer.front(), 1);  // write it
-    buffer.pop();                    // pop it off and write it
+    buffer.pop();                    // pop it off
     std::cout << "ISR wrote data" << std::endl;
   }
 }
@@ -33,7 +33,6 @@ void writePort(uint8_t data) {
 bool bufferEmpty() {
 	return buffer.size() < 1;
 }
-		
 
 void initPort() {
 #if NORITAKE_VFD_BAUD == 9600
