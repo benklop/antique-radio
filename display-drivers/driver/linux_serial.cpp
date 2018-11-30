@@ -5,25 +5,8 @@
 #include <stdint.h>
 #include <unistd.h>
 
-#include <wiringPi.h>
-#include <queue>
-
 #include "config.h"
-static volatile int vfd;
-static std::queue<uint8_t> buffer;
-
-void ISRWritePort() {
-	if(buffer.size() >= 1) { //if there is data to write
-  	   write(vfd, &buffer.front(), 1); //write it
-	   buffer.pop();//pop it off and write it
-	}
-}
-
-void writePort(uint8_t data) {
-	buffer.push(data);
-	if(digitalRead(16) == LOW && buffer.size() >= 1) //if the on-display buffer is empty but we have data in our buffer still
-	    ISRWritePort(); //trigger the ISR since there won't be a falling edge
-}
+static int vfd;
 
 void initPort() {
 	#if NORITAKE_VFD_BAUD == 9600
@@ -40,9 +23,6 @@ void initPort() {
 	
 	struct termios t;
 	static const char *fn = NORITAKE_VFD_FILE;
-
-	wiringPiSetup();
-
 	vfd = open(fn, O_RDWR | O_NOCTTY);
 	if (vfd < 0)
 		return;
@@ -61,13 +41,11 @@ void initPort() {
 	cfsetospeed(&t, baud);
 	cfsetispeed(&t, baud);
 	tcsetattr(vfd, TCSANOW, &t);
-
-	//set up the rx pin using wiringpi to receive buffer status
-	pinMode(16, INPUT);
-	pullUpDnControl(16, PUD_OFF);
-	wiringPiISR(16, INT_EDGE_FALLING, &ISRWritePort);
 }
 
+void writePort(uint8_t data) {
+	write(vfd, &data, 1);
+}
 void hardReset() {
 }
 
