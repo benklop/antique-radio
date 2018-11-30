@@ -1,4 +1,9 @@
+// Copyright 2018 Ben Klopfenstein
+
+#ifndef DISPLAY_DRIVERS_SRC_VFD_WRITER_H_
+#define DISPLAY_DRIVERS_SRC_VFD_WRITER_H_
 #include <fstream>
+#include <string>
 #include <vector>
 #include <bitset>
 #include <iostream>
@@ -9,9 +14,8 @@
 #include "../driver/Noritake_VFD_GU7000.h"
 
 
-
-using namespace std;
-using namespace cimg_library;
+using namespace std; //NOLINT
+namespace cimg = ::cimg_library;
 
 struct gu7000_image {
     uint8_t* data;
@@ -20,15 +24,17 @@ struct gu7000_image {
 };
 
 class VfdWriter {
-    public:
+ public:
     VfdWriter();
 
     static gu7000_image load_image(string filename);
-    static gu7000_image convert_image(CImg<bool> &src);
-    
-    void init(int brightness = 75);
-    void draw_image(gu7000_image &img);
+    static gu7000_image convert_image(const cimg::CImg<bool> &src);
 
-    private:
+    void init(int brightness = 75);
+    void draw_image(const gu7000_image &img);
+
+ private:
     Noritake_VFD_GU7000 vfd;
 };
+
+#endif  // DISPLAY_DRIVERS_SRC_VFD_WRITER_H_
