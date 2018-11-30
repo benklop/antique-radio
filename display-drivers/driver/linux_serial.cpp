@@ -1,4 +1,3 @@
-#ifndef __arm__
 #include <fcntl.h>
 #include <stdint.h>
 #include <sys/ioctl.h>
@@ -46,5 +45,3 @@ void initPort() {
 
 void writePort(uint8_t data) { write(vfd, &data, 1); }
 void hardReset() {}
-
-#endif

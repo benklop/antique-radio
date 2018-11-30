@@ -1,5 +1,4 @@
 
-#ifdef __arm__
 #include <fcntl.h>
 #include <stdint.h>
 #include <sys/ioctl.h>
@@ -73,4 +72,3 @@ void initPort() {
 }
 
 void hardReset() {}
-#endif
