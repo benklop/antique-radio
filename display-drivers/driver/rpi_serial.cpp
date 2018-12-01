@@ -13,6 +13,7 @@ static volatile int vfd;
 static std::queue<uint8_t> buffer;
 
 void ISRWritePort() {
+  std::cout << "ISR triggered" << std::endl;
   if (buffer.size() >= 1) {          // if there is data to write
     write(vfd, &buffer.front(), 1);  // write it
     buffer.pop();                    // pop it off
@@ -26,7 +27,7 @@ void writePort(uint8_t data) {
       buffer.size() >= 1) {  // if the on-display buffer is empty but we have data in our buffer
     write(vfd, &buffer.front(), 1);
     buffer.pop();
-    std::cout << "buffer was empty" << std::endl;
+    std::cout << "Wrote data without ISR" << std::endl;
   }
 }
 
