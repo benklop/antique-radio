@@ -5,6 +5,9 @@
 #include <termios.h>
 #include <unistd.h>
 
+#ifdef DEBUG
+#include <iostream>
+#endif //DEBUG
 #include <queue>
 #include <wiringPi.h>
 
@@ -13,18 +16,32 @@ static volatile int vfd;
 static std::queue<uint8_t> buffer;
 
 void ISRWritePort() {
+  #ifdef DEBUG
+  std::cout << "ISR triggered" << std::endl;
+  #endif
   if (buffer.size() >= 1) {          // if there is data to write
     write(vfd, &buffer.front(), 1);  // write it
-    buffer.pop();                    // pop it off and write it
+    buffer.pop();                    // pop it off
+    #ifdef DEBUG
+    std::cout << "ISR wrote data" << std::endl;
+    #endif
   }
 }
 
 void writePort(uint8_t data) {
   buffer.push(data);
   if (digitalRead(16) == LOW &&
-      buffer.size() >= 1)  // if the on-display buffer is empty but we have data
-                           // in our buffer still
-    ISRWritePort();        // trigger the ISR since there won't be a falling edge
+      buffer.size() >= 1) {  // if the on-display buffer is empty but we have data in our buffer
+    write(vfd, &buffer.front(), 1);
+    buffer.pop();
+    #ifdef DEBUG
+    std::cout << "Wrote data without ISR" << std::endl;
+    #endif
+  }
+}
+
+bool bufferEmpty() {
+	return buffer.size() < 1;
 }
 
 void initPort() {
