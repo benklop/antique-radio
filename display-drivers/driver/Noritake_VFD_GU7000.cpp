@@ -84,14 +84,14 @@ void Noritake_VFD_GU7000::GU7000_defineCustomChar(uint8_t code, FontFormat forma
     command(0x1b, '&', 0x01);
     command(code);
     command(code);
-    
+
     switch (format) {
     case CUUFormat:
         command(5);
         for (uint8_t i=0; i<5; i++)
             command(getColumn(data, i));
         break;
-    
+
     case GU70005x7Format:
         command(5);
         print((const char*)data, 5);
@@ -198,7 +198,7 @@ void Noritake_VFD_GU7000::GU7000_setFontStyle(bool proportional, bool evenSpacin
 }
 
 void Noritake_VFD_GU7000::GU7000_setFontSize(uint8_t x, uint8_t y, bool tall) {
-    if (x<=4 && y<=2) {        
+    if (x<=4 && y<=2) {
         us_command('g', 0x40);
         command(x);
         command(y);
@@ -342,7 +342,7 @@ void Noritake_VFD_GU7000::GU7000_drawImage(unsigned width, uint8_t height, const
 }
 
 void Noritake_VFD_GU7000::GU7000_drawFROMImage(unsigned long address, uint8_t srcHeight, unsigned width, uint8_t height) {
-    #if (NORITAKE_VFD_MODEL_CLASS-7000)/100==9 || (NORITAKE_VFD_MODEL_CLASS-7000)/100==1        
+    #if (NORITAKE_VFD_MODEL_CLASS-7000)/100==9 || (NORITAKE_VFD_MODEL_CLASS-7000)/100==1
         if (height > NORITAKE_VFD_HEIGHT) return;
         us_command('f', 0x10);
         command(0x01);
@@ -439,7 +439,7 @@ void Noritake_VFD_GU7000::print(unsigned x, uint8_t y, int number, uint8_t base)
     #if NORITAKE_VFD_GENERATION == 'B'
         if (number < 0) {
             print(x, y, '-');
-            print(-1, y, (unsigned)-number, base);        
+            print(-1, y, (unsigned)-number, base);
         } else
             print(x, y, (unsigned)number, base);
     #endif
@@ -527,4 +527,10 @@ void Noritake_VFD_GU7000::GU7000_drawImage_p(unsigned x, uint8_t y, unsigned wid
         for (unsigned i = 0; i<(height/8)*width; i++)
             command(pgm_read_byte(data+i));
     #endif
+}
+
+void NORITAKE_VFD_GU7000::buffer_wait() {
+    while ( ! bufferEmpty() ) {
+      _delay_us(x)
+    }
 }

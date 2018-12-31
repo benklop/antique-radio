@@ -4,7 +4,7 @@ project (vfd-display)
 # The version number.
 set (VERSION_MAJOR 0)
 set (VERSION_MINOR 1)
- 
+
 set (CMAKE_CXX_STANDARD 14)
 
 # do not use an X11 display
@@ -26,18 +26,40 @@ include_directories(
     )
 
 # build the gu7000 library so we can actually do things
-add_library(gu7000 STATIC
+if(__arm__)
+  add_library(
+    gu7000 STATIC
 
     "driver/config.h"
     "driver/interface.h"
     "driver/Noritake_VFD_GU7000.h"
-    "driver/linux_serial.cpp"
     "driver/asyncSerial.cpp"
     "driver/paralleli80.cpp"
     "driver/spi.cpp"
     "driver/syncSerial.cpp"
     "driver/Noritake_VFD_GU7000.cpp"
-    )
+    "driver/rpi_serial.cpp"
+  )
+else(__arm__)
+  add_library(
+    gu7000 STATIC
+
+    "driver/config.h"
+    "driver/interface.h"
+    "driver/Noritake_VFD_GU7000.h"
+    "driver/asyncSerial.cpp"
+    "driver/paralleli80.cpp"
+    "driver/spi.cpp"
+    "driver/syncSerial.cpp"
+    "driver/Noritake_VFD_GU7000.cpp"
+    "driver/linux_serial.cpp"
+  )
+endif(__arm__)
 
 add_executable(vfd-display src/vfd_writer.cpp src/main.cpp)
-target_link_libraries(vfd-display gu7000 pthread)
+
+if(__arm__)
+  target_link_libraries(vfd-display gu7000 pthread wiringPi)
+else(__arm__)
+  target_link_libraries(vfd-display gu7000 pthread)
+endif(__arm__)

@@ -32,9 +32,12 @@ class VfdWriter {
 
     void init(int brightness = 75);
     void draw_image(const gu7000_image &img);
+    void flip();
 
  private:
     Noritake_VFD_GU7000 vfd;
+
+    bool page = false;
 };
 
 #endif  // DISPLAY_DRIVERS_SRC_VFD_WRITER_H_

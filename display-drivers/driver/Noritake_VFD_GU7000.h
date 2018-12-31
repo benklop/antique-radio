@@ -39,7 +39,7 @@ enum FontFormat {
      GU70005x7Format =0,
      GU70007x8Format =1,
      CUUFormat =    2,
-     LCDFormat =    CUUFormat     
+     LCDFormat =    CUUFormat
 };
 
 enum AsciiVariant {
@@ -145,7 +145,7 @@ public:
     void println(unsigned long number, uint8_t base);
 
     void GU7000_fillRect(unsigned x0, unsigned y0, unsigned x1, unsigned y1, bool on=true);
-    
+
     void print(unsigned x, uint8_t y, char c);
     void print(unsigned x, uint8_t y, const char *str);
     void print(unsigned x, uint8_t y, const char *buffer, uint8_t len);
@@ -154,10 +154,12 @@ public:
     void GU7000_drawImage(unsigned x, uint8_t y, unsigned width, uint8_t height, const uint8_t *data);
     void GU7000_drawImage(unsigned x, uint8_t y, ImageMemoryArea area, unsigned long address, uint8_t srcHeight, unsigned width, uint8_t height, unsigned offsetx, unsigned offsety);
     void GU7000_drawImage(unsigned x, uint8_t y, ImageMemoryArea area, unsigned long address, unsigned width, uint8_t height);
-    
+
     void print_p(const char *str);
     void print_p(unsigned x, uint8_t y, const char *str);
     void print_p(unsigned x, uint8_t y, const char *buffer, uint8_t len);
     void GU7000_drawImage_p(unsigned width, uint8_t height, const uint8_t *data);
     void GU7000_drawImage_p(unsigned x, uint8_t y, unsigned width, uint8_t height, const uint8_t *data);
+
+    void buffer_wait();
 };

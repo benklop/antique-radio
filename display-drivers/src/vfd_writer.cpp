@@ -5,19 +5,32 @@ VfdWriter::VfdWriter() {
     init();
 }
 
+void VfdWriter::flip() {
+    if (page) {
+        vfd.GU7000_scrollScreen(0, 16, 1, 0);
+        vfd.GU7000_setCursor(0, 0);
+    } else {
+        vfd.GU7000_scrollScreen(0, 16, 1, 0);
+        vfd.GU7000_setCursor(0, 16);
+    }
+    page = !page;
+}
+
 void VfdWriter::init(int brightness) {
     vfd.GU7000_reset();
+    nanosleep((const struct timespec[]){{0, 500000000L}}, NULL);
     vfd.GU7000_init();
-    vfd.GU7000_home();
-
+    nanosleep((const struct timespec[]){{0, 500000000L}}, NULL);
     vfd.GU7000_setScreenBrightness(brightness);
+    vfd.GU7000_clearScreen();
+    flip();
+    vfd.buffer_wait();
 }
 
 gu7000_image VfdWriter::load_image(string filename) {
     cout << "loading image " << filename << " ... ";
     cimg::CImg<bool> src(filename.c_str());
     gu7000_image image = convert_image(src);
-    cout << "success!" << endl;
     return image;
 }
 
@@ -50,4 +63,6 @@ gu7000_image VfdWriter::convert_image(const cimg::CImg<bool> &src) {
 
 void VfdWriter::draw_image(const gu7000_image &img) {
     vfd.GU7000_drawImage(img.width, img.height, img.data);
+    flip();
+    vfd.buffer_wait();
 }
