@@ -45,3 +45,4 @@ void initPort() {
 
 void writePort(uint8_t data) { write(vfd, &data, 1); }
 void hardReset() {}
+bool bufferEmpty() { return true; }

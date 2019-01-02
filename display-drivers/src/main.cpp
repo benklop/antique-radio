@@ -1,9 +1,8 @@
 // Copyright 2018 Ben Klopfenstein
 #include <iostream>
 #include "vfd_writer.h"
+#include "menu.hpp"
 #include "INIReader.h"
-
-//using namespace std; //NOLINT
 
 int main(int argc, char** argv) {
     INIReader reader("/etc/antique-radio/config.ini");
@@ -11,6 +10,8 @@ int main(int argc, char** argv) {
         cout << "Can't load 'config.ini'\n";
         return 1;
     }
+
+
     VfdWriter vfd = VfdWriter();
 
     vfd.init(reader.GetInteger("screen", "brightness", 75));
