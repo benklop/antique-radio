@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include <string.h>
+#include <alloca.h>
 
 #include "config.h"
 #include "Noritake_VFD_GU7000.h"
 #include "interface.h"
-#include <alloca.h>
 
 void Noritake_VFD_GU7000::GU7000_back() {
     command(0x08);
@@ -529,7 +529,7 @@ void Noritake_VFD_GU7000::GU7000_drawImage_p(unsigned x, uint8_t y, unsigned wid
     #endif
 }
 
-void NORITAKE_VFD_GU7000::buffer_wait() {
+void Noritake_VFD_GU7000::buffer_wait() {
     while ( ! bufferEmpty() ) {
       _delay_us(10);
     }
