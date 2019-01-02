@@ -162,5 +162,5 @@ public:
     void GU7000_drawImage_p(unsigned x, uint8_t y, unsigned width, uint8_t height, const uint8_t *data);
 
     void buffer_wait();
-    void bufferEmpty();
+    bool bufferEmpty();
 };
