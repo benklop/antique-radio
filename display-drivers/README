@@ -1,0 +1,5 @@
+needs:
+
+yaml-cpp-dev cmake cimg-dev
+
+maybe other stuff
