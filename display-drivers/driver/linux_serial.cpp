@@ -5,6 +5,8 @@
 #include <unistd.h>
 
 #include "config.h"
+#include "interface.h"
+
 static int vfd;
 
 void initPort() {
@@ -45,3 +47,4 @@ void initPort() {
 
 void writePort(uint8_t data) { write(vfd, &data, 1); }
 void hardReset() {}
+bool bufferEmpty() { return true; }

@@ -6,3 +6,4 @@
 void initPort();
 void writePort(uint8_t data);
 void hardReset();
+bool bufferEmpty();

@@ -77,4 +77,6 @@ void hardReset() {
     _delay_ms(120);
 }
 
+bool bufferEmpty() { return true; }
+
 #endif

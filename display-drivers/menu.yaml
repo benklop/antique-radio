@@ -1,0 +1,11 @@
+---
+Menu:
+  Music:
+    Albums: albums
+    Artists: artists
+    Playlists: playlists
+  Podcasts:
+    - podcasts
+  Settings:
+    Settings1: settings
+    Settings2: settings

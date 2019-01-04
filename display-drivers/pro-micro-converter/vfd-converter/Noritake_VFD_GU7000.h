@@ -1,6 +1,9 @@
+#ifndef NORITAKE_VFD_GU7000_H
+#define NORITAKE_VFD_GU7000_H
+
 #include <stdint.h>
 #include <stddef.h>
-#include "interface.h"
+#include <util/delay.h>
 
 enum ImageMemoryArea {
     FlashImageArea = 1,
@@ -40,38 +43,10 @@ enum FontFormat {
      GU70005x7Format =0,
      GU70007x8Format =1,
      CUUFormat =    2,
-     LCDFormat =    CUUFormat
+     LCDFormat =    CUUFormat     
 };
 
-enum AsciiVariant {
-    AmericaAscii =  0,
-    FranceAscii =   1,
-    GermanyAscii =  2,
-    EnglandAscii =  3,
-    Denmark1Ascii = 4,
-    SweedenAscii =  5,
-    ItalyAscii =    6,
-    Spain1Ascii =   7,
-    JapanAscii =    8,
-    NorwayAscii =   9,
-    Denmark2Ascii = 10,
-    Spain2Ascii =   11,
-    LatinAmericaAscii = 12,
-    KoreaAscii = 13
-};
 
-enum Charset {
-    CP437 = 0, EuroStdCharset = CP437,
-    Katakana = 1,
-    CP850 = 2, MultilingualCharset = CP850,
-    CP860 = 3, PortugeseCharset = CP860,
-    CP863 = 4, CanadianFrenchCharset = CP863,
-    CP865 = 5, NordicCharset = CP865,
-    CP1252 = 0x10,
-    CP866 = 0x11, Cyrillic2Charset = CP866,
-    CP852 = 0x12, Latin2Charset = CP852,
-    CP858 = 0x13
-};
 
 class Noritake_VFD_GU7000 {
 
@@ -84,8 +59,42 @@ class Noritake_VFD_GU7000 {
     void command_xy(unsigned x, unsigned y);
     void command_xy1(unsigned x, unsigned y);
     void crlf();
+    
+    GU7000_Interface *io;    
 
 public:
+    uint8_t width;
+    uint8_t height;
+    uint8_t lines;
+    unsigned modelClass;
+    bool	generation; // GU-7***B = true
+   
+
+    Noritake_VFD_GU7000() {
+        this->modelClass = 7000;
+        this->generation = false;
+    }
+
+    void interface(GU7000_Interface &interface) {
+        io = &interface;
+		//io->init();
+    }
+    
+    void begin(uint8_t width, uint8_t height) {
+        this->width = width;
+        this->height = height;
+        this->lines = this->height / 8;
+    }
+    
+    void isModelClass(unsigned modelClass) {
+        this->modelClass = modelClass;
+		io->getModelClass = modelClass;
+    }
+
+    
+    void isGeneration(char c) {
+        this->generation = toupper(c) == 'B';
+    }
 
     void GU7000_back();
     void GU7000_forward();
@@ -103,8 +112,8 @@ public:
     void GU7000_useCustomChars(bool enable);
     void GU7000_defineCustomChar(uint8_t code, FontFormat format, const uint8_t *data);
     void GU7000_deleteCustomChar(uint8_t code);
-    void GU7000_setAsciiVariant(AsciiVariant code);
-    void GU7000_setCharset(Charset code);
+    void GU7000_setAsciiVariant(uint8_t code);
+    void GU7000_setCharset(uint8_t code);
     void GU7000_setScrollMode(ScrollMode mode);
     void GU7000_setHorizScrollSpeed(uint8_t speed);
     void GU7000_invertOn();
@@ -146,7 +155,7 @@ public:
     void println(unsigned long number, uint8_t base);
 
     void GU7000_fillRect(unsigned x0, unsigned y0, unsigned x1, unsigned y1, bool on=true);
-
+    
     void print(unsigned x, uint8_t y, char c);
     void print(unsigned x, uint8_t y, const char *str);
     void print(unsigned x, uint8_t y, const char *buffer, uint8_t len);
@@ -155,13 +164,11 @@ public:
     void GU7000_drawImage(unsigned x, uint8_t y, unsigned width, uint8_t height, const uint8_t *data);
     void GU7000_drawImage(unsigned x, uint8_t y, ImageMemoryArea area, unsigned long address, uint8_t srcHeight, unsigned width, uint8_t height, unsigned offsetx, unsigned offsety);
     void GU7000_drawImage(unsigned x, uint8_t y, ImageMemoryArea area, unsigned long address, unsigned width, uint8_t height);
-
+    
     void print_p(const char *str);
     void print_p(unsigned x, uint8_t y, const char *str);
     void print_p(unsigned x, uint8_t y, const char *buffer, uint8_t len);
     void GU7000_drawImage_p(unsigned width, uint8_t height, const uint8_t *data);
     void GU7000_drawImage_p(unsigned x, uint8_t y, unsigned width, uint8_t height, const uint8_t *data);
-
-    void buffer_wait();
-
 };
+#endif
