@@ -32,13 +32,9 @@ if(__arm__)
 
     "driver/config.h"
     "driver/interface.h"
-    "driver/Noritake_VFD_GU7000.h"
-    "driver/asyncSerial.cpp"
-    "driver/paralleli80.cpp"
-    "driver/spi.cpp"
-    "driver/syncSerial.cpp"
-    "driver/Noritake_VFD_GU7000.cpp"
     "driver/rpi_serial.cpp"
+    "driver/Noritake_VFD_GU7000.h"
+    "driver/Noritake_VFD_GU7000.cpp"
   )
 else(__arm__)
   add_library(
@@ -46,13 +42,9 @@ else(__arm__)
 
     "driver/config.h"
     "driver/interface.h"
-    "driver/Noritake_VFD_GU7000.h"
-    "driver/asyncSerial.cpp"
-    "driver/paralleli80.cpp"
-    "driver/spi.cpp"
-    "driver/syncSerial.cpp"
-    "driver/Noritake_VFD_GU7000.cpp"
     "driver/linux_serial.cpp"
+    "driver/Noritake_VFD_GU7000.h"
+    "driver/Noritake_VFD_GU7000.cpp"
   )
 endif(__arm__)
 

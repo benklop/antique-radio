@@ -530,7 +530,7 @@ void Noritake_VFD_GU7000::GU7000_drawImage_p(unsigned x, uint8_t y, unsigned wid
 }
 
 void Noritake_VFD_GU7000::buffer_wait() {
-    while ( ! bufferEmpty() ) {
+    while ( !bufferEmpty() ) {
       _delay_us(10);
     }
 }

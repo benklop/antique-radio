@@ -5,6 +5,8 @@
 #include <unistd.h>
 
 #include "config.h"
+#include "interface.h"
+
 static int vfd;
 
 void initPort() {

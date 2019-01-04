@@ -9,7 +9,7 @@
 void initPort() {
     RAISE(WR);
     RAISE(RD);
-    DIRECTION(BUSY, 0);    
+    DIRECTION(BUSY, 0);
     DIRECTION(WR, 1);
     DIRECTION(RD, 1);
     DIRECTION(D0, 1);
@@ -29,12 +29,12 @@ void writePort(uint8_t data) {
         bool ok;
         DIRECTION(D7,0);
         do {
-            LOWER(RD);        
+            LOWER(RD);
             _delay_us(.08);
             ok = CHECK(D7);
             RAISE(RD);
         } while (ok);
-        DIRECTION(D7,1);        
+        DIRECTION(D7,1);
     #endif
 
     if (data & 0x01) RAISE(D0); else LOWER(D0);
@@ -48,7 +48,7 @@ void writePort(uint8_t data) {
     LOWER(WR);
     _delay_us(0.11);
     RAISE(WR);
-    
+
     _delay_us(1.6);
 }
 
@@ -62,5 +62,7 @@ void hardReset() {
         _delay_ms(100);
     #endif
 }
+
+bool bufferEmpty() { return true; }
 
 #endif

@@ -12,6 +12,8 @@
 #include <wiringPi.h>
 
 #include "config.h"
+#include "interface.h"
+
 static volatile int vfd;
 static std::queue<uint8_t> buffer;
 
@@ -41,7 +43,7 @@ void writePort(uint8_t data) {
 }
 
 bool bufferEmpty() {
-	return buffer.size() < 1;
+  return buffer.size() < 1;
 }
 
 void initPort() {
