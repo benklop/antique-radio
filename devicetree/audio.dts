@@ -35,7 +35,7 @@
 		target = <&sound>;
 		frag2: __overlay__ {
 			compatible = "justboom,justboom-dac";
-			i2s-controller = <&i2s1>:
+			i2s-controller = <&i2s1>;
 			status = "okay";
 		};
 	};
