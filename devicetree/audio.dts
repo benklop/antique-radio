@@ -3,48 +3,42 @@
 /plugin/;
 
 / {
-	model = "ROCK PI 4B";
+	model = "ROCK PI 4A";
     compatible = "rockchip,rockpi", "rockchip,rk3399";
 
+    fragment@0 {
+        target-path = [2f 00];
 
-	fragment@0 {
-		target = <&i2s1>;
-		__overlay__ {
-			status = "okay";
-		};
-	};
+        __overlay__ {
 
-	fragment@1 {
-		target = <&i2c7>;
-		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			status = "okay";
-
-			pcm5122@4d {
+            pcm5122@4d {
 				#sound-dai-cells = <0>;
 				compatible = "ti,pcm5122";
 				reg = <0x4d>;
-				AVDD-supply = <&vdd_3v3_reg>;
-				DVDD-supply = <&vdd_3v3_reg>;
-				CPVDD-supply = <&vdd_3v3_reg>;
 				status = "okay";
 			};
-		};
-	};
+        };
 
-	fragment@2 {
-		target = <&sound>;
-		frag2: __overlay__ {
-			compatible = "justboom,justboom-dac";
-			i2s-controller = <&i2s1>;
-			status = "okay";
-		};
-	};
+	fragment@1 {
+        target-path = "/sound-ext-card";
 
-	__overrides__ {
-		24db_digital_gain = <&frag2>,"justboom,24db_digital_gain?";
-	};
+		__overlay__ {
+            compatible = "jusboom,justboom-dac";
+            i2s-controller = <0xffffffff>;
+            status = "okay";
+        };
+    };
+
+    fragment@2 {
+        target = <0xffffffff>;
+
+        __overlay__ {
+            status = "okay";
+            #sound-dai-cells = <0x0>;
+        };
+    };
+
+	__fixups__ {
+        i2s1 = "/fragment@1/__overlay__:i2s-controller:0", "/fragment@2:target:0";
+    };
 };
-
-
