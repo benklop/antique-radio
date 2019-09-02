@@ -181,6 +181,6 @@
     #define D7_PORT                 PORTC
     #define D7_PIN                  7
 #elif NORITAKE_VFD_INTERFACE==2
-	#define NORITAKE_VFD_FILE		"/dev/ttyAMA0"
-    #define NORITAKE_VFD_BAUD       115200
+	#define NORITAKE_VFD_FILE		"/dev/ttyS2"
+    #define NORITAKE_VFD_BAUD       38400
 #endif
