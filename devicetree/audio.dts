@@ -3,7 +3,7 @@
 /plugin/;
 
 / {
-	compatible = "brcm,bcm2835";
+	compatible = "rockchip,rk3399-i2s";
 
 	fragment@0 {
 		target = <&i2s1>;
@@ -35,7 +35,7 @@
 		target = <&sound>;
 		frag2: __overlay__ {
 			compatible = "justboom,justboom-dac";
-			i2s-controller = <&i2s1>;
+			i2s-controller = <&i2s1>:
 			status = "okay";
 		};
 	};
