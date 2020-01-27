@@ -17,6 +17,7 @@
 				reg = <0x4d>;
 				status = "okay";
 			};
+		};
         };
 
 	fragment@1 {

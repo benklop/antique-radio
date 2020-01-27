@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import pixel_ring
-import wiringpi
+#import wiringpi
 
 #configure wiringpi with GPIO numbering
-wiringpi.wiringPiSetupGpio()
+#wiringpi.wiringPiSetupGpio()
 
 #this script is responsible for initial setup and initialization of the enclosure's hardware.
 

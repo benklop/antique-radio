@@ -3,8 +3,14 @@
 #include <PinChangeInterruptPins.h>
 #include <PinChangeInterruptSettings.h>
 #include <Encoder.h>
-#include <Keyboard.h>
+#include <Joystick.h>
 
+Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID,JOYSTICK_TYPE_GAMEPAD,
+  2, 0,                  // Button Count, Hat Switch Count
+  true, true, false,     // X and Y, but no Z Axis
+  false, false, false,   // No Rx, Ry, or Rz
+  false, false,          // No rudder or throttle
+  false, false, false);  // No accelerator, brake, or steering
 
 #define LEFT_KNOB_A 2
 #define LEFT_KNOB_B 3
@@ -18,10 +24,10 @@ void leftButtonInterrupt() {
   uint8_t trigger = getPCINTTrigger(digitalPinToPCINT(LEFT_KNOB_BUTTON));
 
   if (trigger == FALLING) {
-    Keyboard.press(KEY_F1);
+    Joystick.setButton(0, 1);
   }
   else  if (trigger == RISING) {
-    Keyboard.release(KEY_F1);
+    Joystick.setButton(0, 0);
   }    
 }
 
@@ -29,10 +35,10 @@ void rightButtonInterrupt() {
   uint8_t trigger = getPCINTTrigger(digitalPinToPCINT(RIGHT_KNOB_BUTTON));
 
   if (trigger == FALLING) {
-    Keyboard.press(KEY_F2);
+    Joystick.setButton(1, 1);
   }
   else  if (trigger == RISING) {
-    Keyboard.release(KEY_F2);
+    Joystick.setButton(1, 0);
   }    
 }
 
@@ -47,6 +53,10 @@ void setup() {
   attachPCINT(digitalPinToPCINT(LEFT_KNOB_BUTTON), leftButtonInterrupt, CHANGE);
   attachPCINT(digitalPinToPCINT(RIGHT_KNOB_BUTTON), rightButtonInterrupt, CHANGE);
 
+  Joystick.begin();
+  Joystick.setXAxisRange(-1, 1);
+  Joystick.setYAxisRange(-1, 1);
+
   //debugging
   #ifdef DEBUG
     Serial.begin(9600);
@@ -59,7 +69,7 @@ void loop() {
   left_knob = knobLeft.read();
   if (left_knob > 0 && left_knob % 4 == 0) {
     for (int i = 0; i < left_knob / 4; i++) {
-      Keyboard.write(KEY_RIGHT_ARROW);
+      Joystick.setYAxis(1);
       #ifdef DEBUG
         Serial.print("Left Knob UP");
         Serial.println();
@@ -69,7 +79,7 @@ void loop() {
   }
   else if (left_knob < 0 && left_knob % 4 == 0) {
     for (int i = 0; i > left_knob / 4; i--) {
-      Keyboard.write(KEY_LEFT_ARROW);
+      Joystick.setYAxis(-1);
       #ifdef DEBUG
         Serial.print("Left Knob DOWN");
         Serial.println();
@@ -77,11 +87,15 @@ void loop() {
     }
     knobLeft.write(0);
   }
+  else {
+    Joystick.setYAxis(0);
+  }
+    
   
   right_knob = knobRight.read();
   if (right_knob > 0 && right_knob % 4 == 0) {
     for (int i = 0; i < right_knob / 4; i++) {
-      Keyboard.write(KEY_UP_ARROW);
+      Joystick.setXAxis(1);
       #ifdef DEBUG
         Serial.print("Right Knob UP");
         Serial.println();
@@ -91,12 +105,15 @@ void loop() {
   }
   else if (right_knob < 0 && right_knob % 4 == 0) {
     for (int i = 0; i > right_knob / 4; i--) {
-      Keyboard.write(KEY_DOWN_ARROW);
+      Joystick.setXAxis(-1);
       #ifdef DEBUG
         Serial.print("Right Knob DOWN");
         Serial.println();
       #endif
     }
     knobRight.write(0);
+  }
+  else {
+    Joystick.setXAxis(0);
   }
 }
